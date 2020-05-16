@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SearchVC.swift
 //  Speakable
 //
 //  Created by Nicolas Guerrero on 5/16/20.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SearchVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
+    
 
+   
 
 }
-
