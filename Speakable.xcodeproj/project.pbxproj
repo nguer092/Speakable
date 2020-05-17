@@ -18,6 +18,9 @@
 		0149B34024709788003C35B2 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B33F24709788003C35B2 /* MessagesVC.swift */; };
 		0149B342247097F0003C35B2 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B341247097F0003C35B2 /* LoginVC.swift */; };
 		0149B3442470980A003C35B2 /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B3432470980A003C35B2 /* CreatePostVC.swift */; };
+		0149B3492470D165003C35B2 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B3482470D165003C35B2 /* SignupVC.swift */; };
+		0149B34C2470D19C003C35B2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B34B2470D19C003C35B2 /* Utilities.swift */; };
+		0149B34E2470D302003C35B2 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B34D2470D302003C35B2 /* InitialVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		0149B33F24709788003C35B2 /* MessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
 		0149B341247097F0003C35B2 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		0149B3432470980A003C35B2 /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
+		0149B3482470D165003C35B2 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		0149B34B2470D19C003C35B2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		0149B34D2470D302003C35B2 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +56,11 @@
 		0149B31B24709562003C35B2 = {
 			isa = PBXGroup;
 			children = (
-				0149B32624709563003C35B2 /* Speakable */,
+				0149B34F2470D7F3003C35B2 /* Speakable */,
+				0149B32F24709563003C35B2 /* Main.storyboard */,
+				0149B33724709567003C35B2 /* Info.plist */,
+				0149B33424709567003C35B2 /* LaunchScreen.storyboard */,
+				0149B33224709567003C35B2 /* Assets.xcassets */,
 				0149B32524709563003C35B2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,18 +73,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0149B32624709563003C35B2 /* Speakable */ = {
-			isa = PBXGroup;
-			children = (
-				0149B32724709563003C35B2 /* AppDelegate.swift */,
-				0149B32924709563003C35B2 /* SceneDelegate.swift */,
-				0149B34724709826003C35B2 /* Resources */,
-				0149B3462470981C003C35B2 /* View */,
-				0149B3452470980E003C35B2 /* Controller */,
-			);
-			path = Speakable;
-			sourceTree = "<group>";
-		};
 		0149B3452470980E003C35B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +82,8 @@
 				0149B33D24709776003C35B2 /* SearchVC.swift */,
 				0149B341247097F0003C35B2 /* LoginVC.swift */,
 				0149B3432470980A003C35B2 /* CreatePostVC.swift */,
+				0149B3482470D165003C35B2 /* SignupVC.swift */,
+				0149B34D2470D302003C35B2 /* InitialVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -91,7 +91,6 @@
 		0149B3462470981C003C35B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0149B32F24709563003C35B2 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,11 +98,21 @@
 		0149B34724709826003C35B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0149B33224709567003C35B2 /* Assets.xcassets */,
-				0149B33424709567003C35B2 /* LaunchScreen.storyboard */,
-				0149B33724709567003C35B2 /* Info.plist */,
+				0149B34B2470D19C003C35B2 /* Utilities.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		0149B34F2470D7F3003C35B2 /* Speakable */ = {
+			isa = PBXGroup;
+			children = (
+				0149B32724709563003C35B2 /* AppDelegate.swift */,
+				0149B32924709563003C35B2 /* SceneDelegate.swift */,
+				0149B34724709826003C35B2 /* Resources */,
+				0149B3462470981C003C35B2 /* View */,
+				0149B3452470980E003C35B2 /* Controller */,
+			);
+			path = Speakable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,10 +189,13 @@
 				0149B3442470980A003C35B2 /* CreatePostVC.swift in Sources */,
 				0149B34024709788003C35B2 /* MessagesVC.swift in Sources */,
 				0149B32E24709563003C35B2 /* ProfileVc.swift in Sources */,
+				0149B3492470D165003C35B2 /* SignupVC.swift in Sources */,
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
 				0149B33E24709776003C35B2 /* SearchVC.swift in Sources */,
 				0149B32C24709563003C35B2 /* HomeVc.swift in Sources */,
+				0149B34E2470D302003C35B2 /* InitialVC.swift in Sources */,
 				0149B32824709563003C35B2 /* AppDelegate.swift in Sources */,
+				0149B34C2470D19C003C35B2 /* Utilities.swift in Sources */,
 				0149B32A24709563003C35B2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,10 +12,19 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpElements()
+       
     }
     
-
-
+    @IBOutlet weak var emailUserTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    func setUpElements(){
+        errorLabel.alpha = 0
+        Utilities.styleTextField(emailUserTextField)
+        Utilities.styleTextField(passwordTextField)
+        Utilities.styleFilledButton(loginButton)
+    }
 }
