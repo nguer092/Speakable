@@ -57,10 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				0149B34F2470D7F3003C35B2 /* Speakable */,
-				0149B32F24709563003C35B2 /* Main.storyboard */,
-				0149B33724709567003C35B2 /* Info.plist */,
-				0149B33424709567003C35B2 /* LaunchScreen.storyboard */,
-				0149B33224709567003C35B2 /* Assets.xcassets */,
 				0149B32524709563003C35B2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +102,10 @@
 		0149B34F2470D7F3003C35B2 /* Speakable */ = {
 			isa = PBXGroup;
 			children = (
+				0149B32F24709563003C35B2 /* Main.storyboard */,
+				0149B33424709567003C35B2 /* LaunchScreen.storyboard */,
+				0149B33224709567003C35B2 /* Assets.xcassets */,
+				0149B33724709567003C35B2 /* Info.plist */,
 				0149B32724709563003C35B2 /* AppDelegate.swift */,
 				0149B32924709563003C35B2 /* SceneDelegate.swift */,
 				0149B34724709826003C35B2 /* Resources */,
