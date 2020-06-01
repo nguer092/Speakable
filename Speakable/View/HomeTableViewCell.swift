@@ -47,7 +47,7 @@ class HomeTableViewCell: UITableViewCell {
             
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+                try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
             } catch let error as NSError {
                 print("audioSession error: \(error.localizedDescription)")
             }
@@ -76,7 +76,7 @@ extension HomeTableViewCell{
         self.usernameLabel.text = pod.createdBy.username
         self.audioFile = pod.audio
         self.descriptionLabel.text = pod.podDescription
-        let userImageFile = pod.createdBy["picture"] as? PFFile
+        let userImageFile = pod.createdBy["picture"] as? PFFileObject
         userImageFile?.getDataInBackground {
             (imageData: Data?, error: Error?) -> Void in
             if error == nil {
@@ -89,8 +89,8 @@ extension HomeTableViewCell{
                 }
             }
         }
-        self.profilePicture.layer.contentsGravity = kCAGravityBottom
-        profilePicture.contentMode = UIViewContentMode.scaleAspectFill
+        self.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
+        profilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         self.profilePicture.setRadius()
         self.profilePicture.isUserInteractionEnabled = true
     }

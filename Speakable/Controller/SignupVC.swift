@@ -52,7 +52,7 @@ class SignupVC: UIViewController {
                 self.displayAlert(title: "Error signing up", message: error.localizedDescription)
             } else {
                 print("Signed up!")
-                self.dismiss(animated: true)
+                self.transitionToHome()
             }
         }
     }
@@ -64,12 +64,13 @@ class SignupVC: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func transitionToHome() {
+        let homeViewController = storyboard?.instantiateViewController(identifier: "TabViewController")
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
+    }
 
-    
-    
-    
-    
-    
     
     
 }

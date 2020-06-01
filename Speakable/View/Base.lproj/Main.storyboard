@@ -10,7 +10,7 @@
         <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="TabViewController" customModule="Speakable" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabViewController" id="49e-Tb-3d3" customClass="TabViewController" customModule="Speakable" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -59,8 +59,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginButton:" destination="H8V-9x-Jfk" eventType="touchUpInside" id="fRo-HX-LME"/>
-                                            <segue destination="RZO-zf-KlG" kind="show" id="YKE-GN-fPJ"/>
+                                            <segue destination="RZO-zf-KlG" kind="show" id="YPx-YK-Spg"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -119,7 +118,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="lgnupButtonPressed:" destination="RZO-zf-KlG" eventType="touchUpInside" id="hzR-w9-8xO"/>
+                                            <action selector="lgnupButtonPressed:" destination="RZO-zf-KlG" eventType="touchUpInside" id="XI1-81-38s"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymr-cK-FAz">
@@ -367,18 +366,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="KsX-kh-FjR">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="bwMic" style="done" id="vjd-Fx-Cxb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bwMic" style="done" id="vjd-Fx-Cxb">
+                            <connections>
+                                <segue destination="LeI-mG-8dk" kind="show" id="13l-uG-ULC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLX-WG-9CJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1478" y="73"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="kOA-v0-wQJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4q9-Lb-0V8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="WFZ-qY-1PU"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home-7" id="WFZ-qY-1PU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LcP-r8-Agk">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -716,11 +719,11 @@
             </objects>
             <point key="canvasLocation" x="1477" y="-620"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="42C-7v-DUy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CJz-sn-pC2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="76s-OF-S36"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="circle-user-7" id="76s-OF-S36"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bIC-l4-onw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -794,11 +797,11 @@
             </objects>
             <point key="canvasLocation" x="1476.8115942028987" y="766.74107142857144"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="nGN-Yh-8BP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lNS-c1-FSP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7sF-5L-yOQ"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="heart-7" id="7sF-5L-yOQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FKI-DP-MMT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -858,6 +861,9 @@
                                 <state key="normal" title="Add description">
                                     <color key="titleColor" red="0.55008012529999994" green="0.9061703686" blue="0.98407483100000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <segue destination="tRu-Qy-JLK" kind="presentation" id="Iy6-wu-U9T"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -964,7 +970,10 @@
         <image name="bk" width="640" height="960"/>
         <image name="bluePlay" width="50" height="50"/>
         <image name="bwMic" width="50" height="50"/>
+        <image name="circle-user-7" width="30" height="30"/>
         <image name="forward" width="36.666667938232422" height="40"/>
+        <image name="heart-7" width="30" height="30"/>
+        <image name="home-7" width="30" height="30"/>
         <image name="kobe" width="204.5" height="258"/>
         <image name="micButtonImg" width="100.5" height="100.5"/>
         <image name="pexels-photo-302871" width="640" height="426.5"/>
