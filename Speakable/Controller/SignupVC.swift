@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SignupVC: UIViewController {
 
@@ -22,6 +23,13 @@ class SignupVC: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
+        @IBAction func signupButtonPressed(_ sender: UIButton) {
+            if emailTextField.text == "" || passwordTextField.text == "" {
+                    self.displayAlert(title: "Error in form", message: "Please enter an email & password")
+                }
+            signUpUser()
+    }
+    
     
     func setUpElements(){
         errorLabel.alpha = 0
@@ -30,6 +38,31 @@ class SignupVC: UIViewController {
         Utilities.styleTextField(confirmPasswordTextField)
         Utilities.styleTextField(emailTextField)
         Utilities.styleFilledButton(signupButton)
+    }
+    
+    func signUpUser() {
+        let user = PFUser()
+        user.username = emailTextField.text
+        user.password = passwordTextField.text
+        user.email = emailTextField.text
+        //user["picture"] = #imageLiteral(resourceName: "circle-user-7")
+        
+        user.signUpInBackground {[unowned self] (succes, error) in
+            if let error = error {
+                self.displayAlert(title: "Error signing up", message: error.localizedDescription)
+            } else {
+                print("Signed up!")
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
     
