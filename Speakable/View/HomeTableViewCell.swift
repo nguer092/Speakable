@@ -62,7 +62,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func forward15Pressed(_ sender: UIButton) {
-        audioPlayer.currentTime = 15
+        audioPlayer.currentTime = +15
     }
     
 }
@@ -105,7 +105,7 @@ extension HomeTableViewCell{
             self.progressView.progress = 0.0
         }
         if self.audioPlayer.isPlaying == false {
-            self.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+            self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
         }
     }
     

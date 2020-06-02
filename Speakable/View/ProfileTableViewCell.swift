@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import AVFoundation
+import AVFoundation 
 
 class ProfileTableViewCell: UITableViewCell {
 

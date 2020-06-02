@@ -12,14 +12,14 @@ class DescriptionVC: UIViewController {
     
     @IBOutlet weak var descriptionText: UITextView!
     
-    var completion:((String) -> ())!
+    var completion = String("")
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        self.completion(descriptionText.text)
+        completion = descriptionText.text
         dismiss(animated: true, completion: nil)
     }
     

@@ -201,10 +201,8 @@ extension AddPostVC {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Description") {
-            guard let dvc = segue.destination as? DescriptionVC else { return}
-            dvc.completion = { str in
-                self.desc = str
-            }
+            guard let dvc = segue.destination as? DescriptionVC else { return }
+            self.desc = dvc.completion
         }
     }
 }

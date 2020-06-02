@@ -79,7 +79,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
             return UITableViewCell() }
         
         //Pass Pods
-        cell.profilePicture.layer.contentsGravity = kCAGravityBottom
+        cell.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
         

@@ -34,7 +34,7 @@ class LoginVC: UIViewController {
         PFUser.logInWithUsername(inBackground: emailUserTextField.text!, password: passwordTextField.text!, block: { [unowned self] (user, error) in
             if (user != nil) {
                 print("Login successfull")
-                self.dismiss(animated: true)
+                self.transitionToHome()
             } else {
                 var errorText = "Unknwon error: Please try again"
                 if let error = error {
@@ -58,5 +58,11 @@ class LoginVC: UIViewController {
         Utilities.styleTextField(emailUserTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(loginButton)
+    }
+    
+    func transitionToHome() {
+        let homeViewController = storyboard?.instantiateViewController(identifier: "TabViewController")
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
     }
 }

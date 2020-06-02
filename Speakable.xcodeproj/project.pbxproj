@@ -116,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				0149B34F2470D7F3003C35B2 /* Speakable */,
-				0149B33724709567003C35B2 /* Info.plist */,
 				0149B32524709563003C35B2 /* Products */,
 				AD0858D922C138E0F5DC3F5F /* Pods */,
 				77EDA4EECE8A88A0C221798C /* Frameworks */,
@@ -170,6 +169,7 @@
 		0149B34F2470D7F3003C35B2 /* Speakable */ = {
 			isa = PBXGroup;
 			children = (
+				0149B33724709567003C35B2 /* Info.plist */,
 				013651282484886A00C3CE6C /* Enums */,
 				0136512D248488D200C3CE6C /* Model */,
 				0136512C248488BB00C3CE6C /* Extensions */,
@@ -487,7 +487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = guerrero.Speakable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -506,7 +506,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = guerrero.Speakable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
