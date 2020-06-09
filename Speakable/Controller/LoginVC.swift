@@ -28,12 +28,14 @@ class LoginVC: UIViewController {
         loginUser()
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     func loginUser() {
         
         PFUser.logInWithUsername(inBackground: emailUserTextField.text!, password: passwordTextField.text!, block: { [unowned self] (user, error) in
             if (user != nil) {
-                print("Login successfull")
                 self.transitionToHome()
             } else {
                 var errorText = "Unknwon error: Please try again"

@@ -56,12 +56,12 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     var settings = [String : Int]()
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIButton!
     var seconds = 300
     var timer = Timer()
     var isTimerRunning = false
-    private var desc: String?
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBAction func recordButtonTapped(_ sender: UIButton) {
         if audioRecorder == nil  {
@@ -92,15 +92,15 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     }
     
     
-    @IBAction func saveTapped(_ sender: UIBarButtonItem) {
+    @IBAction func saveTapped(_ sender: UIButton) {
         // Get Url, Create data object, Create Pod, Save to Parse
         do {
             let data = try Data(contentsOf: tempFileURL)
             let pod = Pod()
             pod.audio = data
             pod.createdBy = PFUser.current()!
-            if let desc = self.desc, desc.isEmpty == false {
-                pod.podDescription = desc
+            if descriptionTextField.text != nil {
+                pod.podDescription = descriptionTextField.text!
             } else {
                 pod.podDescription = "No Description"
             }
@@ -197,13 +197,5 @@ extension AddPostVC: AVAudioRecorderDelegate {
 }
 
 
-extension AddPostVC {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "Description") {
-            guard let dvc = segue.destination as? DescriptionVC else { return }
-            self.desc = dvc.completion
-        }
-    }
-}
+
 

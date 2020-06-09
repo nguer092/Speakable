@@ -163,7 +163,6 @@ class ProfileVC: UIViewController{
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var podsButton: BottomBorderButton!
     @IBOutlet weak var subscribedButton: BottomBorderButton!
     @IBOutlet weak var subscribersButton: BottomBorderButton!
@@ -203,6 +202,7 @@ class ProfileVC: UIViewController{
     @IBAction func editButtonPressed(_ sender: UIButton) {
         editButton.isHidden = true
         saveButton.isHidden = false
+        usernameLabel.isHidden = true
         editUsernameTextField.isHidden = false
         editUsernameTextField.placeholder = PFUser.current()?.username
     }
@@ -212,7 +212,7 @@ class ProfileVC: UIViewController{
         editButton.isHidden = false
         editUsernameTextField.isHidden = true
         self.editUsernameTextField.resignFirstResponder()
-        
+        usernameLabel.isHidden = false
         self.currentUser.username = editUsernameTextField.text
         self.currentUser.saveInBackground()
         usernameLabel.text = currentUser?.username
@@ -322,7 +322,7 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let selectedPhoto = info[UIImagePickerController.InfoKey.originalImage.rawValue] as! UIImage
         
@@ -337,4 +337,4 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
         })
     }
 }
-
+ 

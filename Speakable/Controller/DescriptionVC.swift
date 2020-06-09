@@ -12,7 +12,7 @@ class DescriptionVC: UIViewController {
     
     @IBOutlet weak var descriptionText: UITextView!
     
-    var completion = String("")
+    var completion : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

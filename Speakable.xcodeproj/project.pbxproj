@@ -13,7 +13,6 @@
 		013651332484897D00C3CE6C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651322484897D00C3CE6C /* HomeTableViewCell.swift */; };
 		01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */; };
 		01365137248489F300C3CE6C /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365136248489F300C3CE6C /* FollowingTableViewCell.swift */; };
-		0136513924848CD200C3CE6C /* DescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136513824848CD200C3CE6C /* DescriptionVC.swift */; };
 		0136513B24848CF400C3CE6C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136513A24848CF400C3CE6C /* TabViewController.swift */; };
 		0136513F2484907800C3CE6C /* ImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136513E2484907800C3CE6C /* ImageViewExt.swift */; };
 		013651412484909700C3CE6C /* BottomBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651402484909700C3CE6C /* BottomBorderButton.swift */; };
@@ -40,7 +39,6 @@
 		013651322484897D00C3CE6C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		01365136248489F300C3CE6C /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
-		0136513824848CD200C3CE6C /* DescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionVC.swift; sourceTree = "<group>"; };
 		0136513A24848CF400C3CE6C /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		0136513E2484907800C3CE6C /* ImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExt.swift; sourceTree = "<group>"; };
 		013651402484909700C3CE6C /* BottomBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderButton.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				0149B341247097F0003C35B2 /* LoginVC.swift */,
 				0149B32B24709563003C35B2 /* HomeVC.swift */,
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
-				0136513824848CD200C3CE6C /* DescriptionVC.swift */,
 				0149B32D24709563003C35B2 /* ProfileVc.swift */,
 				0149B33D24709776003C35B2 /* SearchVC.swift */,
 				0136513A24848CF400C3CE6C /* TabViewController.swift */,
@@ -323,7 +320,6 @@
 				0136513B24848CF400C3CE6C /* TabViewController.swift in Sources */,
 				0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */,
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
-				0136513924848CD200C3CE6C /* DescriptionVC.swift in Sources */,
 				01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */,
 				0136513F2484907800C3CE6C /* ImageViewExt.swift in Sources */,
 				0149B33E24709776003C35B2 /* SearchVC.swift in Sources */,

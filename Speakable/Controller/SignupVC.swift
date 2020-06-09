@@ -30,6 +30,9 @@ class SignupVC: UIViewController {
             signUpUser()
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     func setUpElements(){
         errorLabel.alpha = 0
