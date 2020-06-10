@@ -146,8 +146,7 @@ class ProfileVC: UIViewController{
                 return
             }
                 let userImageFile = self.currentUser["picture"] as? PFFileObject
-                userImageFile?.getDataInBackground {
-                    (imageData: Data?, error: Error?) -> Void in
+                userImageFile?.getDataInBackground { (imageData: Data?, error: Error?) -> Void in
                     if error == nil {
                         if let imageData = imageData {
                             let image = UIImage(data:imageData)
@@ -331,13 +330,15 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
         dismiss(animated: true, completion: {
             self.profilePic.image = selectedPhoto
             
-            let imageData: NSData = selectedPhoto.jpegData(compressionQuality: 0)! as NSData
-            if let photo = PFFileObject(data: imageData as Data) {
-                self.currentUser.setObject(photo, forKey: "picture")
-                self.currentUser.saveInBackground()
+            let imageData = selectedPhoto.pngData()
+            if let imageFile = PFFileObject(data: imageData!) {
+            self.currentUser["picture"] = imageFile
+            self.currentUser.saveInBackground()
             }
         })
     }
+    
+
     
 
     
