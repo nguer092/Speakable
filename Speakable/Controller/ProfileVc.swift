@@ -211,8 +211,8 @@ class ProfileVC: UIViewController{
         saveButton.isHidden = true
         editButton.isHidden = false
         editUsernameTextField.isHidden = true
-        self.editUsernameTextField.resignFirstResponder()
         usernameLabel.isHidden = false
+        self.editUsernameTextField.resignFirstResponder()
         self.currentUser.username = editUsernameTextField.text
         self.currentUser.saveInBackground()
         usernameLabel.text = currentUser?.username
@@ -309,6 +309,7 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
 
 extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         if currentUser == PFUser.current() {
             let imagePickerController = UIImagePickerController()
@@ -318,13 +319,14 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
         }
     }
     
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let selectedPhoto = info[UIImagePickerController.InfoKey.originalImage.rawValue] as! UIImage
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let selectedPhoto = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
         
         dismiss(animated: true, completion: {
             self.profilePic.image = selectedPhoto
@@ -336,5 +338,9 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
             }
         })
     }
+    
+
+    
+
 }
  

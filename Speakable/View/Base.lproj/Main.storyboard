@@ -441,7 +441,7 @@
                                 <rect key="frame" x="0.0" y="24" width="414" height="370"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-302871" translatesAutoresizingMaskIntoConstraints="NO" id="sgW-BW-TxQ">
-                                        <rect key="frame" x="0.0" y="-51" width="414" height="427"/>
+                                        <rect key="frame" x="0.0" y="-51" width="414" height="426.5"/>
                                     </imageView>
                                     <visualEffectView opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-YA-muH">
                                         <rect key="frame" x="0.0" y="-24" width="414" height="394"/>
@@ -479,12 +479,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lqd-TX-cUg">
-                                                <rect key="frame" x="67" y="312.5" width="280" height="30"/>
+                                                <rect key="frame" x="82" y="312.5" width="250" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb5-so-TFr" customClass="BottomBorderButton" customModule="Speakable" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
-                                                        <state key="normal" title="       Pods">
+                                                        <state key="normal" title="Pods">
                                                             <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -493,7 +493,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iCo-B5-cjn" customClass="BottomBorderButton" customModule="Speakable" customModuleProvider="target">
-                                                        <rect key="frame" x="100" y="0.0" width="80" height="30"/>
+                                                        <rect key="frame" x="90" y="0.0" width="70" height="30"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
                                                         <state key="normal" title="Subscribed">
                                                             <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -504,9 +504,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPG-r8-1LF" customClass="BottomBorderButton" customModule="Speakable" customModuleProvider="target">
-                                                        <rect key="frame" x="200" y="0.0" width="80" height="30"/>
+                                                        <rect key="frame" x="180" y="0.0" width="70" height="30"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="13"/>
-                                                        <state key="normal" title="   Subscribers">
+                                                        <state key="normal" title="Subscribers">
                                                             <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -983,7 +983,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YPx-YK-Spg"/>
+        <segue reference="orZ-cu-vvK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="36.666667938232422" height="40"/>
