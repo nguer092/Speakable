@@ -203,7 +203,7 @@ class ProfileVC: UIViewController{
         saveButton.isHidden = false
         usernameLabel.isHidden = true
         editUsernameTextField.isHidden = false
-        editUsernameTextField.placeholder = PFUser.current()?.username
+        editUsernameTextField.text = PFUser.current()?.username
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {

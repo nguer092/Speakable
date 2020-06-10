@@ -37,7 +37,7 @@ class HomeVC: UITableViewController {
     //MARK: Properties, Outlets, Actions
     var pods: [Pod] = []
     let tap = UITapGestureRecognizer.self
-    
+    var check = Array<Bool>()
     
     //MARK: Functions
     private func goToLogin() {
@@ -77,6 +77,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? HomeTableViewCell else {
             return UITableViewCell() }
+
         
         //Pass Pods
         cell.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom

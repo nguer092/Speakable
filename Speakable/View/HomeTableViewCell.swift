@@ -17,7 +17,6 @@ class HomeTableViewCell: UITableViewCell {
     var audioFile: Data?
     var audioPlayer : AVAudioPlayer!
     var timer = Timer()
-    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -25,8 +24,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var playbutton: UIButton!
     
     
-    
     @IBAction func playButtonClicked(_ sender: UIButton) {
+        
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
                 self.audioPlayer.pause()
@@ -103,9 +102,6 @@ extension HomeTableViewCell{
         if self.progressView.progress >= 1 {
             self.timer.invalidate()
             self.progressView.progress = 0.0
-        }
-        if self.audioPlayer.isPlaying == false {
-            self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
         }
     }
     

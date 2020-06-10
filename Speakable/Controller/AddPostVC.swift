@@ -18,7 +18,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         tabBarController?.tabBar.isHidden = true
-        
+        playButton.isEnabled = false
         recordingSession = AVAudioSession.sharedInstance()
         
         do {
@@ -64,14 +64,17 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBAction func recordButtonTapped(_ sender: UIButton) {
+        
         if audioRecorder == nil  {
             startRecording()
             runTimer()
         } else if audioRecorder.isRecording {
             finishRecording(success: true)
+            playButton.isEnabled = true
             saveButton.isEnabled = true
             timer.invalidate()
         } else if !audioRecorder.isRecording {
+            playButton.isEnabled = false
             seconds = 181
             startRecording()
             runTimer()
