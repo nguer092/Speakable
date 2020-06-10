@@ -280,18 +280,18 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if displayState == .pods{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! ProfileTableViewCell
             let pod = pods[indexPath.row]
             cell.configureCell(pod: pod)
             cell.audioPlayer = nil
             return cell
         } else if displayState == .subscribed  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! FollowingTableViewCell
             let user = subscribed[indexPath.row]
             cell.configureCell(user: user)
             return cell
         } else if displayState == .subscribers {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! FollowingTableViewCell
             let user = subscribers[indexPath.row]
             cell.configureCell(user: user)
             return cell
