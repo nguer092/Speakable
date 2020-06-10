@@ -8,12 +8,11 @@
 
 import UIKit
 import Parse
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let parseConfig = ParseClientConfiguration {
@@ -22,6 +21,7 @@ import Parse
             $0.server = "http://speakableapp.herokuapp.com/parse"
         }
         Parse.initialize(with: parseConfig)
+        IQKeyboardManager.shared.enable = true
         return true
     }
 

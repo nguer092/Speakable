@@ -45,16 +45,14 @@ class SignupVC: UIViewController {
     
     func signUpUser() {
         let user = PFUser()
-        user.username = emailTextField.text
+        user.username = usernameTextField.text
         user.password = passwordTextField.text
         user.email = emailTextField.text
-        //user["picture"] = #imageLiteral(resourceName: "circle-user-7")
         
         user.signUpInBackground {[unowned self] (succes, error) in
             if let error = error {
                 self.displayAlert(title: "Error signing up", message: error.localizedDescription)
             } else {
-                print("Signed up!")
                 self.transitionToHome()
             }
         }

@@ -201,17 +201,16 @@ class ProfileVC: UIViewController{
     @IBAction func editButtonPressed(_ sender: UIButton) {
         editButton.isHidden = true
         saveButton.isHidden = false
-        usernameLabel.isHidden = true
         editUsernameTextField.isHidden = false
-        editUsernameTextField.text = PFUser.current()?.username
+        editUsernameTextField.placeholder = PFUser.current()?.username
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         saveButton.isHidden = true
         editButton.isHidden = false
         editUsernameTextField.isHidden = true
-        usernameLabel.isHidden = false
         self.editUsernameTextField.resignFirstResponder()
+        
         self.currentUser.username = editUsernameTextField.text
         self.currentUser.saveInBackground()
         usernameLabel.text = currentUser?.username
