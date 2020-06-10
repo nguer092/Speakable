@@ -78,7 +78,6 @@ extension HomeVC: UIGestureRecognizerDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? HomeTableViewCell else {
             return UITableViewCell() }
 
-        
         //Pass Pods
         cell.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
         let pod = pods[indexPath.row]

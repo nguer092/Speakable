@@ -22,7 +22,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     
     
-    @IBAction func playButtonPressed(_ sender: UIButton) {
+    @IBAction func playButtonTapped(_ sender: UIButton) {
         
         if self.audioPlayer != nil {
             if (self.audioPlayer?.isPlaying)! {
@@ -68,7 +68,6 @@ class ProfileTableViewCell: UITableViewCell {
     
     @objc func updateProgress() {
         // Increase progress value
-        
         if self.audioPlayer != nil {
             progressView.progress = Float((self.audioPlayer?.currentTime)! / (self.audioPlayer?.duration)!)
         }

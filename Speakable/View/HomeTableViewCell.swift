@@ -24,7 +24,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var playbutton: UIButton!
     
     
-    @IBAction func playButtonClicked(_ sender: UIButton) {
+    @IBAction func playButtonTapped(_ sender: UIButton) {
         
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
@@ -44,6 +44,7 @@ class HomeTableViewCell: UITableViewCell {
             self.audioPlayer.play()
             self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
             
+            
             let audioSession = AVAudioSession.sharedInstance()
             do {
                 try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
@@ -57,11 +58,11 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func rewind15Pressed(_ sender: UIButton) {
-        audioPlayer.currentTime = -15
+        audioPlayer.currentTime = -5
     }
     
     @IBAction func forward15Pressed(_ sender: UIButton) {
-        audioPlayer.currentTime = +15
+        audioPlayer.currentTime = +5
     }
     
 }
@@ -103,6 +104,12 @@ extension HomeTableViewCell{
             self.timer.invalidate()
             self.progressView.progress = 0.0
         }
+        
+        if self.audioPlayer?.isPlaying == false {
+            self.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+        }
     }
     
 }
+
+
