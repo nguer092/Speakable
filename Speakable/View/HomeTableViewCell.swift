@@ -62,11 +62,11 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func rewind15Pressed(_ sender: UIButton) {
-        audioPlayer.currentTime = -5
+        audioPlayer.currentTime -= 5
     }
     
     @IBAction func forward15Pressed(_ sender: UIButton) {
-        audioPlayer.currentTime = +5
+        audioPlayer.currentTime += 5
     }
     
 }

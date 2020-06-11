@@ -329,7 +329,7 @@
                                                         <constraint firstAttribute="width" constant="45" id="mjW-xH-fsM"/>
                                                         <constraint firstAttribute="height" constant="45" id="zzR-tR-G5S"/>
                                                     </constraints>
-                                                    <state key="normal" title="rewindButton" image="skipBack"/>
+                                                    <state key="normal" image="skipBack"/>
                                                     <connections>
                                                         <action selector="rewind15Pressed:" destination="dEl-0v-RMS" eventType="touchUpInside" id="uhW-WO-8e6"/>
                                                     </connections>
@@ -340,7 +340,7 @@
                                                         <constraint firstAttribute="width" constant="45" id="D5v-o9-HzD"/>
                                                         <constraint firstAttribute="height" constant="45" id="ePY-2i-3aI"/>
                                                     </constraints>
-                                                    <state key="normal" title="Play Button" image="bluePlay"/>
+                                                    <state key="normal" image="bluePlay"/>
                                                     <connections>
                                                         <action selector="playButtonTapped:" destination="dEl-0v-RMS" eventType="touchUpInside" id="cnv-v1-066"/>
                                                     </connections>
@@ -351,7 +351,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="W8U-By-dyQ"/>
                                                         <constraint firstAttribute="width" constant="45" id="u9v-4g-9aS"/>
                                                     </constraints>
-                                                    <state key="normal" title="forwardButton" image="skipFor"/>
+                                                    <state key="normal" image="skipFor"/>
                                                     <connections>
                                                         <action selector="forward15Pressed:" destination="dEl-0v-RMS" eventType="touchUpInside" id="1hl-Xa-9v5"/>
                                                     </connections>
