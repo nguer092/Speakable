@@ -21,7 +21,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBAction func lgnupButtonPressed(_ sender: UIButton) {
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
       let error = validateFields()
         if error != nil {
             showError(error!)
@@ -37,16 +37,13 @@ class LoginVC: UIViewController {
     func loginUser() {
         let email = emailUserTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Signing in the user
         PFUser.logInWithUsername(inBackground: email, password: password, block: { [unowned self] (user, error) in
-            if (user != nil) {
-                self.transitionToHome()
+            if error != nil {
+                self.errorLabel.text = error!.localizedDescription
+                self.errorLabel.alpha = 1
             } else {
-                if error != nil {
-                    self.errorLabel.text = error!.localizedDescription
-                    self.errorLabel.alpha = 1
-                } else {
-                    self.transitionToHome()
-                }
+                self.transitionToHome()
             }
         })
     }

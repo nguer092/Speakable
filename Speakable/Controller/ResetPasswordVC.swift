@@ -15,7 +15,9 @@ class ResetPasswordVC: UIViewController {
         super.viewDidLoad()
     }
     
+    
     @IBOutlet weak var emailTextfield: UITextField!
+    
     
     @IBAction func backButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
