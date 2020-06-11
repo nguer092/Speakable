@@ -22,10 +22,12 @@ class LoginVC: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func lgnupButtonPressed(_ sender: UIButton) {
-        if emailUserTextField.text == "" || passwordTextField.text == "" {
-            self.displayAlert(title: "Error in form", message: "Please enter an email & password")
+      let error = validateFields()
+        if error != nil {
+            showError(error!)
+        } else {
+             loginUser()
         }
-        loginUser()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -33,27 +35,35 @@ class LoginVC: UIViewController {
     }
     
     func loginUser() {
-        
-        PFUser.logInWithUsername(inBackground: emailUserTextField.text!, password: passwordTextField.text!, block: { [unowned self] (user, error) in
+        let email = emailUserTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        PFUser.logInWithUsername(inBackground: email, password: password, block: { [unowned self] (user, error) in
             if (user != nil) {
                 self.transitionToHome()
             } else {
-                var errorText = "Unknwon error: Please try again"
-                if let error = error {
-                    errorText = error.localizedDescription
+                if error != nil {
+                    self.errorLabel.text = error!.localizedDescription
+                    self.errorLabel.alpha = 1
+                } else {
+                    self.transitionToHome()
                 }
-                self.displayAlert(title: "Something went wrong", message: errorText)
             }
         })
     }
     
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+    func validateFields() -> String? {
+        if  emailUserTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in every field"
+        }
+        return nil
     }
+    
+    func showError(_ message:String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+    
     
     func setUpElements(){
         errorLabel.alpha = 0

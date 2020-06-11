@@ -96,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bfy-b1-PDY">
-                                <rect key="frame" x="82" y="40" width="250" height="232.5"/>
+                                <rect key="frame" x="82" y="40" width="250" height="190"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email/username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bZc-l3-GGa">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
@@ -122,12 +122,6 @@
                                             <action selector="lgnupButtonPressed:" destination="RZO-zf-KlG" eventType="touchUpInside" id="XI1-81-38s"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymr-cK-FAz">
-                                        <rect key="frame" x="0.0" y="210" width="250" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.031769527860000001" blue="0.1593187284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="Xha-Qc-qMR"/>
@@ -136,7 +130,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tic-MK-rB0">
-                                <rect key="frame" x="20" y="40" width="34" height="30"/>
+                                <rect key="frame" x="20" y="0.0" width="34" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="0.2901960784" green="0.30196078430000001" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -144,14 +138,26 @@
                                     <action selector="backButtonTapped:" destination="RZO-zf-KlG" eventType="touchUpInside" id="o2K-Em-VQ6"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qio-AD-FFW">
+                                <rect key="frame" x="82" y="250" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="fsy-UW-EMu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.031769527860000001" blue="0.1593187284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="tic-MK-rB0" firstAttribute="leading" secondItem="LzX-Cp-HOY" secondAttribute="leading" constant="20" id="DbT-lb-eGu"/>
+                            <constraint firstItem="Qio-AD-FFW" firstAttribute="top" secondItem="CeW-mN-qX6" secondAttribute="bottom" constant="20" id="ENW-jb-DIH"/>
                             <constraint firstItem="LzX-Cp-HOY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tic-MK-rB0" secondAttribute="trailing" symbolic="YES" id="Jaf-sZ-0b9"/>
-                            <constraint firstItem="tic-MK-rB0" firstAttribute="top" secondItem="Oor-yA-cBi" secondAttribute="top" constant="40" id="cKj-ON-d9v"/>
+                            <constraint firstItem="tic-MK-rB0" firstAttribute="top" secondItem="LzX-Cp-HOY" secondAttribute="top" id="aYg-4X-5dt"/>
+                            <constraint firstItem="Qio-AD-FFW" firstAttribute="width" secondItem="CeW-mN-qX6" secondAttribute="width" id="fA5-fm-Nyh"/>
                             <constraint firstItem="bfy-b1-PDY" firstAttribute="top" secondItem="LzX-Cp-HOY" secondAttribute="top" constant="40" id="iee-z4-Lxz"/>
                             <constraint firstItem="bfy-b1-PDY" firstAttribute="centerX" secondItem="Oor-yA-cBi" secondAttribute="centerX" id="ndB-50-wlt"/>
+                            <constraint firstItem="Qio-AD-FFW" firstAttribute="centerX" secondItem="Oor-yA-cBi" secondAttribute="centerX" id="sNY-at-xvo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LzX-Cp-HOY"/>
                     </view>
@@ -159,14 +165,14 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailUserTextField" destination="bZc-l3-GGa" id="LMc-en-h8x"/>
-                        <outlet property="errorLabel" destination="ymr-cK-FAz" id="rmN-3E-ZcP"/>
+                        <outlet property="errorLabel" destination="Qio-AD-FFW" id="5gq-fJ-xgW"/>
                         <outlet property="loginButton" destination="CeW-mN-qX6" id="3tM-Yc-0Et"/>
                         <outlet property="passwordTextField" destination="ihe-GJ-ROT" id="77c-da-oDp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ilb-ll-utG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-857" y="400"/>
+            <point key="canvasLocation" x="-857.97101449275374" y="399.77678571428572"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="W3H-HS-Dmn">
@@ -176,7 +182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-fS-uJx">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eaw-fS-uJx">
                                 <rect key="frame" x="82" y="179" width="250" height="372"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TPf-yb-4Ke">
@@ -185,22 +191,22 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-ar-nCF">
-                                        <rect key="frame" x="0.0" y="70" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="80.5" width="250" height="50"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEs-g8-NkQ">
-                                        <rect key="frame" x="0.0" y="140" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="161" width="250" height="50"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M8o-5B-pDc">
-                                        <rect key="frame" x="0.0" y="210" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="241.5" width="250" height="50"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wts-1B-wPW">
-                                        <rect key="frame" x="0.0" y="280" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="322" width="250" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.30196078430000001" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="m8A-Is-pbv"/>
@@ -213,12 +219,6 @@
                                             <action selector="signupButtonPressed:" destination="dQJ-fl-lr9" eventType="touchUpInside" id="smU-x0-eJA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgI-J7-ca2">
-                                        <rect key="frame" x="0.0" y="350" width="250" height="22"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.031769527860000001" blue="0.1593187284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="M8o-5B-pDc" firstAttribute="height" secondItem="TPf-yb-4Ke" secondAttribute="height" id="7VU-WJ-Sqs"/>
@@ -258,13 +258,25 @@
                                     <action selector="backButtonTapped:" destination="dQJ-fl-lr9" eventType="touchUpInside" id="FnJ-oz-pY4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgI-J7-ca2">
+                                <rect key="frame" x="82" y="571" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="TRp-Wd-4yl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.031769527860000001" blue="0.1593187284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="QoO-iZ-b3t" firstAttribute="bottom" secondItem="eaw-fS-uJx" secondAttribute="bottom" constant="311" id="EwJ-Ic-0sk"/>
                             <constraint firstItem="QoO-iZ-b3t" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="59H-B3-Jt1" secondAttribute="trailing" constant="323" id="OZc-In-cmY"/>
+                            <constraint firstItem="QgI-J7-ca2" firstAttribute="top" secondItem="wts-1B-wPW" secondAttribute="bottom" constant="20" id="R6t-wx-khv"/>
                             <constraint firstItem="eaw-fS-uJx" firstAttribute="centerX" secondItem="PEV-cV-nMh" secondAttribute="centerX" id="dIL-7e-It8"/>
                             <constraint firstItem="k6E-IN-0sH" firstAttribute="top" secondItem="QoO-iZ-b3t" secondAttribute="top" constant="78" id="hYw-YW-QN4"/>
+                            <constraint firstItem="QgI-J7-ca2" firstAttribute="centerX" secondItem="PEV-cV-nMh" secondAttribute="centerX" id="iMf-kC-MFz"/>
+                            <constraint firstItem="QgI-J7-ca2" firstAttribute="width" secondItem="wts-1B-wPW" secondAttribute="width" id="lgU-lF-enN"/>
                             <constraint firstItem="59H-B3-Jt1" firstAttribute="top" secondItem="QoO-iZ-b3t" secondAttribute="top" id="m6E-r9-FPz"/>
                             <constraint firstItem="59H-B3-Jt1" firstAttribute="leading" secondItem="QoO-iZ-b3t" secondAttribute="leading" constant="20" id="uTF-P9-O8v"/>
                             <constraint firstItem="k6E-IN-0sH" firstAttribute="centerX" secondItem="PEV-cV-nMh" secondAttribute="centerX" id="wBL-Fs-spM"/>
@@ -660,7 +672,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="65U-am-Fpg"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Play Button" image="back"/>
+                                                                    <state key="normal" image="back"/>
                                                                     <connections>
                                                                         <action selector="rewind15Pressed:" destination="vZa-I0-arg" eventType="touchUpInside" id="pQ2-Ii-6Fn"/>
                                                                     </connections>
@@ -670,7 +682,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="U7R-a4-LMg"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Play Button" image="bluePlay"/>
+                                                                    <state key="normal" image="bluePlay"/>
                                                                     <connections>
                                                                         <action selector="playButtonTapped:" destination="vZa-I0-arg" eventType="touchUpInside" id="gJy-7M-Hu9"/>
                                                                     </connections>
@@ -680,7 +692,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="50" id="LmK-QB-oUr"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Play Button" image="forward"/>
+                                                                    <state key="normal" image="forward"/>
                                                                     <connections>
                                                                         <action selector="forward15Pressed:" destination="vZa-I0-arg" eventType="touchUpInside" id="Rgp-Pm-ouS"/>
                                                                     </connections>
