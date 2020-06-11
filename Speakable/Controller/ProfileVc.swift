@@ -195,7 +195,7 @@ class ProfileVC: UIViewController{
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         PFUser.logOut()
-        goToLogin()
+        goToLaunch()
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
@@ -247,8 +247,18 @@ class ProfileVC: UIViewController{
         return UIColor(displayP3Red: 154.0/255.0, green: 251.0/255.0, blue: 126.0/255.0, alpha: 0.75)
     }
     
-    private func goToLogin() {
-        performSegue(withIdentifier: "goToLogin", sender: self)
+    private func goToLaunch() {
+        //Sign out code
+        let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
+            do {
+                PFUser.logOut()
+                let launchVC = self.storyboard?.instantiateViewController(withIdentifier: "InitialVC")
+                self.present(launchVC!, animated: true, completion: nil)
+            }
+        }
+        logoutPopup.addAction(logoutAction)
+        present(logoutPopup, animated: true, completion: nil)
     }
     
     override var prefersStatusBarHidden: Bool {

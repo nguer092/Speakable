@@ -23,11 +23,14 @@ class SignupVC: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-        @IBAction func signupButtonPressed(_ sender: UIButton) {
-            if emailTextField.text == "" || passwordTextField.text == "" {
-                    self.displayAlert(title: "Error in form", message: "Please enter an email & password")
-                }
+    @IBAction func signupButtonPressed(_ sender: UIButton) {
+         //Validate the fields
+          let error = validateFields()
+          if error != nil {
+              showError(error!)
+          } else {
             signUpUser()
+        }
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -44,18 +47,46 @@ class SignupVC: UIViewController {
     }
     
     func signUpUser() {
+        //Create cleaned versions of the data
         let user = PFUser()
-        user.username = usernameTextField.text
-        user.password = passwordTextField.text
-        user.email = emailTextField.text
-        
-        user.signUpInBackground {[unowned self] (succes, error) in
-            if let error = error {
-                self.displayAlert(title: "Error signing up", message: error.localizedDescription)
+        user.username = usernameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        user.email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        user.password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        //Create the user
+        user.signUpInBackground {[unowned self] (succes, err) in
+            //Check for errors
+            if err != nil {
+                //There was an error creating the user
+                let message = err?.localizedDescription
+                self.showError(message ?? "There was an error creating the user")
             } else {
+                //Transition to the Home Screen
                 self.transitionToHome()
             }
         }
+    }
+    
+    func validateFields() -> String? {
+        //Check the fields & validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns an error message)
+        // Check that all fields are filled in
+        if  usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in every field"
+        }
+        //Check that password is secure
+        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if Utilities.isPasswordValid(cleanedPassword) == false {
+            //Password isn't secure enough
+            return "Please make sure your password is at least 8 characters, contains a special character & contains a number"
+        }
+        return nil
+    }
+     
+    func showError(_ message:String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
     }
     
     func displayAlert(title: String, message: String) {
@@ -74,4 +105,5 @@ class SignupVC: UIViewController {
 
     
     
+
 }

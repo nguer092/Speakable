@@ -17,14 +17,18 @@ class HomeTableViewCell: UITableViewCell {
     var audioFile: Data?
     var audioPlayer : AVAudioPlayer!
     var timer = Timer()
+    var listens = 0
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var progressView : UIProgressView!
     @IBOutlet weak var playbutton: UIButton!
+    @IBOutlet weak var listensCountLabel: UILabel!
     
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        
+        self.listens += 1
         
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
@@ -93,6 +97,7 @@ extension HomeTableViewCell{
         profilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         self.profilePicture.setRadius()
         self.profilePicture.isUserInteractionEnabled = true
+        self.listensCountLabel.text = "🔉 \(self.listens)"
     }
     
     
