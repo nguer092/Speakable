@@ -257,7 +257,13 @@ class ProfileVC: UIViewController{
                 self.present(launchVC!, animated: true, completion: nil)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (buttonTapped) in
+            do {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
         logoutPopup.addAction(logoutAction)
+        logoutPopup.addAction(cancelAction)
         present(logoutPopup, animated: true, completion: nil)
     }
     

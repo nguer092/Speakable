@@ -50,11 +50,11 @@ class ProfileTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func rewind15Pressed(_ sender: UIButton) {
+    @IBAction func rewindTapped(_ sender: UIButton) {
         audioPlayer?.currentTime -= 5
     }
     
-    @IBAction func forward15Pressed(_ sender: UIButton) {
+    @IBAction func forwardTapped(_ sender: UIButton) {
         audioPlayer?.currentTime += 5
     }
     

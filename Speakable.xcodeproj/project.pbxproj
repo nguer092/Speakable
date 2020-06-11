@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */; };
 		0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651292484887F00C3CE6C /* DisplayState.swift */; };
 		0136512F248488E000C3CE6C /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136512E248488E000C3CE6C /* Pod.swift */; };
 		01365131248488F200C3CE6C /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365130248488F200C3CE6C /* Following.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		013651292484887F00C3CE6C /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		0136512E248488E000C3CE6C /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		01365130248488F200C3CE6C /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				0149B34D2470D302003C35B2 /* InitialVC.swift */,
 				0149B3482470D165003C35B2 /* SignupVC.swift */,
 				0149B341247097F0003C35B2 /* LoginVC.swift */,
+				0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */,
 				0149B32B24709563003C35B2 /* HomeVC.swift */,
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
 				0149B32D24709563003C35B2 /* ProfileVC.swift */,
@@ -321,6 +324,7 @@
 				0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */,
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
 				01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */,
+				0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */,
 				0136513F2484907800C3CE6C /* ImageViewExt.swift in Sources */,
 				0149B33E24709776003C35B2 /* SearchVC.swift in Sources */,
 				0149B32C24709563003C35B2 /* HomeVC.swift in Sources */,

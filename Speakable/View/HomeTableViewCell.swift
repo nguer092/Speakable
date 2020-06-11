@@ -61,11 +61,11 @@ class HomeTableViewCell: UITableViewCell {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(HomeTableViewCell.updateProgress)), userInfo: nil, repeats: true)
     }
     
-    @IBAction func rewind15Pressed(_ sender: UIButton) {
+    @IBAction func rewindTapped(_ sender: UIButton) {
         audioPlayer.currentTime -= 5
     }
     
-    @IBAction func forward15Pressed(_ sender: UIButton) {
+    @IBAction func forwardTapped(_ sender: UIButton) {
         audioPlayer.currentTime += 5
     }
     
