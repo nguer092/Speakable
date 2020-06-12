@@ -505,7 +505,7 @@
                                 <connections>
                                     <outlet property="descriptionLabel" destination="Pjs-gt-yHr" id="Qh6-nK-3ON"/>
                                     <outlet property="listensCountLabel" destination="GbI-3e-cKe" id="pBg-6w-1lP"/>
-                                    <outlet property="playbutton" destination="MvL-DO-AKn" id="zh3-Md-AG7"/>
+                                    <outlet property="playButton" destination="MvL-DO-AKn" id="zh3-Md-AG7"/>
                                     <outlet property="profilePicture" destination="g3q-7J-lpe" id="hH1-HK-bwn"/>
                                     <outlet property="progressView" destination="w18-hW-qhl" id="HkX-Iz-ZbS"/>
                                     <outlet property="usernameLabel" destination="N0t-Gj-hHO" id="ffQ-Ds-ju4"/>
@@ -892,7 +892,7 @@
         <scene sceneID="42C-7v-DUy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CJz-sn-pC2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="circle-user-7" id="76s-OF-S36"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Profile" image="circle-user-7" id="76s-OF-S36"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bIC-l4-onw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

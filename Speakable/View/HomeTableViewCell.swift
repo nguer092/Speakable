@@ -23,7 +23,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var progressView : UIProgressView!
-    @IBOutlet weak var playbutton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var listensCountLabel: UILabel!
     
     
@@ -34,11 +34,11 @@ class HomeTableViewCell: UITableViewCell {
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
                 self.audioPlayer.pause()
-                self.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                self.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
             }
             else {
                 self.audioPlayer.play()
-                self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
+                self.playButton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
             }
             return
         }
@@ -47,7 +47,7 @@ class HomeTableViewCell: UITableViewCell {
             self.audioPlayer.prepareToPlay()
             self.audioPlayer.delegate = self as? AVAudioPlayerDelegate
             self.audioPlayer.play()
-            self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
+            self.playButton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
             
             let audioSession = AVAudioSession.sharedInstance()
             do {
@@ -116,7 +116,7 @@ extension HomeTableViewCell{
         }
         
         if self.audioPlayer?.isPlaying == false {
-            self.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+            self.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
         }
     }
     

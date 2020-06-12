@@ -17,12 +17,14 @@ class ProfileTableViewCell: UITableViewCell {
     var audioFile: Data?
     var audioPlayer : AVAudioPlayer?
     var timer = Timer()
+    var playButtonTapped : (()->())?
     @IBOutlet weak var podDescription: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var playButton: UIButton!
     
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        playButtonTapped?()
         
         if self.audioPlayer != nil {
             if (self.audioPlayer?.isPlaying)! {

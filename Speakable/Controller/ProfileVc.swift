@@ -11,7 +11,7 @@ import Parse
 
 class ProfileVC: UIViewController{
     
-    //MARK: Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         guard (tabBarController as? TabViewController) != nil else { return }
@@ -43,8 +43,7 @@ class ProfileVC: UIViewController{
 
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+        super.viewWillAppear(animated)
         guard let tabController = tabBarController as? TabViewController else { return }
         
         if tabController.currentUser != nil {
@@ -100,7 +99,7 @@ class ProfileVC: UIViewController{
             querySubscribed()
         })
 
-        //Query for the users that the user is subscribed to
+        //Query for the users subscribed
         func querySubscribed () {
         let subscribedQuery = Following.query()
         subscribedQuery?.whereKey("follower", equalTo: currentUser.objectId as Any)
@@ -134,7 +133,7 @@ class ProfileVC: UIViewController{
     }
     
 
-    //MARK: Properties, Outlets, Actions
+    //MARK:  - Properties, Outlets
     
     var pods: [Pod] = []
     var subscribers: [String] = []
@@ -172,6 +171,8 @@ class ProfileVC: UIViewController{
     @IBOutlet weak var editUsernameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var followingSwitch: UISwitch!
+    
+    //MARK: - Actions
     
     @IBAction func followSwitched(_ sender: UISwitch) {
         if followingSwitch.isOn {
@@ -242,14 +243,13 @@ class ProfileVC: UIViewController{
     }
     
 
-    //MARK: Functions
-
+    //MARK: - Functions
+    
     private func greenColor() -> UIColor {
         return UIColor(displayP3Red: 154.0/255.0, green: 251.0/255.0, blue: 126.0/255.0, alpha: 0.75)
     }
     
     private func goToLaunch() {
-        //Sign out code
         let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
             do {
@@ -274,6 +274,7 @@ class ProfileVC: UIViewController{
     
 }
 
+    //MARK: - TableView Delegate
 
 extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -299,6 +300,16 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             let pod = pods[indexPath.row]
             cell.configureCell(pod: pod)
             cell.audioPlayer = nil
+            
+            cell.playButtonTapped = {
+                for tempCell in tableView.visibleCells {
+                    if let ultraTempCell = tempCell as? ProfileTableViewCell, ultraTempCell != cell {
+                        if let ultraAudioPlayer = ultraTempCell.audioPlayer {
+                            ultraAudioPlayer.pause()
+                            ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                        } }
+                }
+            }
             return cell
         } else if displayState == .subscribed  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
@@ -321,9 +332,9 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+    //MARK: - ImagePickerDelegate
 
 extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
     
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         if currentUser == PFUser.current() {
@@ -334,11 +345,9 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
         }
     }
     
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedPhoto = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
@@ -353,11 +362,21 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
             }
         })
     }
-    
+}
 
+extension ProfileVC: UITabBarControllerDelegate {
     
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if viewController === self.navigationController && self.isViewLoaded  {
 
+                 if self.view.window != nil {
+                     print("hello")
+                 } else {
+                     print("goodbye")
+                 }
+             }
+    }
     
-
+  
 }
  

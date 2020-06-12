@@ -89,7 +89,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
                     if let ultraAudioPlayer = ultraTempCell.audioPlayer {
                     ultraAudioPlayer.pause()
-                    ultraTempCell.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                    ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
                     } }
             }
         }
