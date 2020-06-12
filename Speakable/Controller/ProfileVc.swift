@@ -26,6 +26,7 @@ class ProfileVC: UIViewController{
         
         self.tableview.dataSource = self
         self.tableview.delegate = self
+        self.tabBarController?.delegate = self
         self.tableview.allowsSelection = false
         
         navigationController?.navigationBar.isHidden = true
@@ -52,6 +53,10 @@ class ProfileVC: UIViewController{
             currentUser = PFUser.current()
         }
         
+        setupProfile()
+    }
+    
+    func setupProfile() {
         if currentUser != PFUser.current() {
             followingSwitch.isHidden = false
             editButton.isHidden = true
@@ -64,7 +69,7 @@ class ProfileVC: UIViewController{
             logoutButton.isHidden  = false
         }
         
-        // Set user's properties
+        // Set user's properties -> optional bind all the queries?
         usernameLabel.text = currentUser?.username
 
         // Query for user's pods
@@ -364,19 +369,17 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
     }
 }
 
+
 extension ProfileVC: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if viewController === self.navigationController && self.isViewLoaded  {
-
-                 if self.view.window != nil {
-                     print("hello")
-                 } else {
-                     print("goodbye")
-                 }
-             }
+            if self.view.window != nil {
+                currentUser = PFUser.current()
+                setupProfile()
+                self.tableview.reloadData()
+            }
+        }
     }
-    
-  
 }
  
