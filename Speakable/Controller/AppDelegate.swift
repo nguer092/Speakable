@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import IQKeyboardManagerSwift
+import AVFoundation
 
 @UIApplicationMain
  class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,14 @@ import IQKeyboardManagerSwift
         }
         Parse.initialize(with: parseConfig)
         IQKeyboardManager.shared.enable = true
+        
+        do {
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+        try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            
+        }
+        
         return true
     }
 

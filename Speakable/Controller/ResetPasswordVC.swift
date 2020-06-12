@@ -27,6 +27,6 @@ class ResetPasswordVC: UIViewController {
     @IBAction func sendButtonTapped(_ sender: Any) {
         if let email = emailTextfield.text {
         PFUser.requestPasswordResetForEmail(inBackground: email)
-        } else {return}
+        } 
     }
 }

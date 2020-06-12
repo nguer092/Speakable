@@ -46,16 +46,8 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         
-//        Keyboard
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
     
     //MARK: - Properties, Outlets, Actions
     
@@ -137,19 +129,6 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     
     //MARK: - Functions
     
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y == 0 {
-//                self.view.frame.origin.y -= keyboardSize.height
-//            }
-//        }
-//    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//        if self.view.frame.origin.y != 0 {
-//            self.view.frame.origin.y = 0
-//        }
-//    }
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(AddPostVC.updateTimer)), userInfo: nil, repeats: true)
@@ -205,7 +184,7 @@ extension AddPostVC: AVAudioRecorderDelegate {
         do {
             try audioSession.setActive(true)
             audioRecorder.record()
-            recordLabel.text = "Tap to stop"
+            recordLabel.text = "Tap to stop recording"
         } catch {
             print(#line, error.localizedDescription)
         }

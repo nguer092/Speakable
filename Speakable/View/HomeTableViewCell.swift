@@ -18,6 +18,7 @@ class HomeTableViewCell: UITableViewCell {
     var audioPlayer : AVAudioPlayer!
     var timer = Timer()
     var listens = 0
+    var playButtonTapped : (()->())?
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -26,10 +27,10 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var listensCountLabel: UILabel!
     
     
+    
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        
+        playButtonTapped?()
         self.listens += 1
-        
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
                 self.audioPlayer.pause()
@@ -48,7 +49,6 @@ class HomeTableViewCell: UITableViewCell {
             self.audioPlayer.play()
             self.playbutton.setImage(#imageLiteral(resourceName: "bluePause"), for: .normal)
             
-            
             let audioSession = AVAudioSession.sharedInstance()
             do {
                 try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
@@ -62,13 +62,18 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func rewindTapped(_ sender: UIButton) {
+        if audioPlayer != nil {
         audioPlayer.currentTime -= 5
+        }
     }
     
     @IBAction func forwardTapped(_ sender: UIButton) {
+        if audioPlayer != nil {
         audioPlayer.currentTime += 5
+        }
     }
     
+
 }
 
 
@@ -97,7 +102,7 @@ extension HomeTableViewCell{
         profilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         self.profilePicture.setRadius()
         self.profilePicture.isUserInteractionEnabled = true
-        self.listensCountLabel.text = "🔉 \(self.listens)"
+        self.listensCountLabel.text = "Listeners: \(self.listens)"
     }
     
     

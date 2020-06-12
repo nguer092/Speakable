@@ -26,6 +26,7 @@ class ProfileVC: UIViewController{
         
         self.tableview.dataSource = self
         self.tableview.delegate = self
+        self.tableview.allowsSelection = false
         
         navigationController?.navigationBar.isHidden = true
         
@@ -300,12 +301,12 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             cell.audioPlayer = nil
             return cell
         } else if displayState == .subscribed  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
             let user = subscribed[indexPath.row]
             cell.configureCell(user: user)
             return cell
         } else if displayState == .subscribers {
-            let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
             let user = subscribers[indexPath.row]
             cell.configureCell(user: user)
             return cell

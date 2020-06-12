@@ -15,6 +15,7 @@ class HomeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        self.tableView.allowsSelection = false
     }
     
      
@@ -83,13 +84,24 @@ extension HomeVC: UIGestureRecognizerDelegate {
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
         
+        cell.playButtonTapped = {
+            for tempCell in tableView.visibleCells {
+                if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
+                    if let ultraAudioPlayer = ultraTempCell.audioPlayer {
+                    ultraAudioPlayer.pause()
+                    ultraTempCell.playbutton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                    } }
+            }
+        }
+        
         //Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
         tap.delegate = self as UIGestureRecognizerDelegate
         cell.profilePicture.addGestureRecognizer(tap)
-        cell.addGestureRecognizer(tap)
         return cell
     }
+    
+ 
     
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         let point = sender!.location(in: view)
@@ -103,6 +115,8 @@ extension HomeVC: UIGestureRecognizerDelegate {
         tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
     }
+    
+ 
     
     
 }
