@@ -27,6 +27,7 @@ class HomeVC: UITableViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         if PFUser.current() == nil {
             goToLogin()
         } else {

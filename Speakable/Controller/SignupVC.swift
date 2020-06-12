@@ -24,7 +24,6 @@ class SignupVC: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func signupButtonPressed(_ sender: UIButton) {
-         //Validate the fields
           let error = validateFields()
           if error != nil {
               showError(error!)
@@ -56,11 +55,9 @@ class SignupVC: UIViewController {
         user.signUpInBackground {[unowned self] (succes, err) in
             //Check for errors
             if err != nil {
-                //There was an error creating the user
                 let message = err?.localizedDescription
                 self.showError(message ?? "There was an error creating the user")
             } else {
-                //Transition to the Home Screen
                 self.transitionToHome()
             }
         }
@@ -68,7 +65,6 @@ class SignupVC: UIViewController {
     
     func validateFields() -> String? {
         //Check the fields & validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns an error message)
-        // Check that all fields are filled in
         if  usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -77,9 +73,13 @@ class SignupVC: UIViewController {
         }
         //Check that password is secure
         let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedConfirm = confirmPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if Utilities.isPasswordValid(cleanedPassword) == false {
             //Password isn't secure enough
             return "Please make sure your password is at least 8 characters, contains a special character & contains a number"
+        }
+        if cleanedPassword != cleanedConfirm {
+            return "Passwords don't match"
         }
         return nil
     }

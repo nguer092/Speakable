@@ -37,7 +37,6 @@ class LoginVC: UIViewController {
     func loginUser() {
         let email = emailUserTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        // Signing in the user
         PFUser.logInWithUsername(inBackground: email, password: password, block: { [unowned self] (user, error) in
             if error != nil {
                 self.errorLabel.text = error!.localizedDescription

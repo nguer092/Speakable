@@ -12,6 +12,7 @@ import Parse
 class ProfileVC: UIViewController{
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard (tabBarController as? TabViewController) != nil else { return }
@@ -20,31 +21,28 @@ class ProfileVC: UIViewController{
         profilePic.isUserInteractionEnabled = true
         profilePic.setRadius()
         profilePic.contentMode = UIView.ContentMode.scaleAspectFill
-        
         editUsernameTextField.isHidden = true
         saveButton.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+        podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
         
         self.tableview.dataSource = self
         self.tableview.delegate = self
         self.tabBarController?.delegate = self
         self.tableview.allowsSelection = false
-        
-        navigationController?.navigationBar.isHidden = true
-        
-        podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        followingSwitch.isOn = false
     }
-
+    
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
         guard let tabController = tabBarController as? TabViewController else { return }
         tabController.currentUser = nil
         currentUser = nil
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillAppear(true)
         guard let tabController = tabBarController as? TabViewController else { return }
         
         if tabController.currentUser != nil {
@@ -52,27 +50,24 @@ class ProfileVC: UIViewController{
         } else {
             currentUser = PFUser.current()
         }
-        
         setupProfile()
     }
     
     func setupProfile() {
+        
+        usernameLabel.text = currentUser?.username
+        
         if currentUser != PFUser.current() {
             followingSwitch.isHidden = false
             editButton.isHidden = true
             logoutButton.isHidden = true
-        }
-        
-        if currentUser == PFUser.current() {
+        } else if currentUser == PFUser.current() {
             followingSwitch.isHidden = true
             editButton.isHidden = false
             logoutButton.isHidden  = false
         }
         
-        // Set user's properties -> optional bind all the queries?
-        usernameLabel.text = currentUser?.username
-
-        // Query for user's pods
+        // Query for pods, subscribers, subscribed
         let podQuery = Pod.query()
         podQuery?.whereKey("createdBy", equalTo: currentUser as Any)
         podQuery?.includeKey("audio")
@@ -90,7 +85,6 @@ class ProfileVC: UIViewController{
             }
         })
         
-        //Query for the user's subscribers
         let subscribersQuery = Following.query()
         subscribersQuery?.whereKey("following", equalTo: currentUser.objectId as Any)
         subscribersQuery?.includeKey("follower")
@@ -103,24 +97,22 @@ class ProfileVC: UIViewController{
             }
             querySubscribed()
         })
-
-        //Query for the users subscribed
+        
         func querySubscribed () {
-        let subscribedQuery = Following.query()
-        subscribedQuery?.whereKey("follower", equalTo: currentUser.objectId as Any)
-        subscribersQuery?.includeKey("following")
-        subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
-            if let objects = objects {
-                self.subscribed.removeAll()
-                for object in objects {
-                    self.subscribed.insert(object["following"] as! String, at: 0)
+            let subscribedQuery = Following.query()
+            subscribedQuery?.whereKey("follower", equalTo: currentUser.objectId as Any)
+            subscribersQuery?.includeKey("following")
+            subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
+                if let objects = objects {
+                    self.subscribed.removeAll()
+                    for object in objects {
+                        self.subscribed.insert(object["following"] as! String, at: 0)
+                    }
                 }
-            }
-        })
+            })
         }
         
         //Switch State
-        
         // Figure out which user's profile you're viewing and check if the current logged-in user is following them
         
         let switchQuery = Following.query()
@@ -137,29 +129,30 @@ class ProfileVC: UIViewController{
         })
     }
     
-
+    
     //MARK:  - Properties, Outlets
     
     var pods: [Pod] = []
     var subscribers: [String] = []
     var subscribed: [String] = []
     var displayState = DisplayState.pods
+    override var prefersStatusBarHidden: Bool { return true }
     var currentUser: PFUser! {
         didSet {
             if self.currentUser == nil {
                 self.profilePic.image = nil
                 return
             }
-                let userImageFile = self.currentUser["picture"] as? PFFileObject
-                userImageFile?.getDataInBackground { (imageData: Data?, error: Error?) -> Void in
-                    if error == nil {
-                        if let imageData = imageData {
-                            let image = UIImage(data:imageData)
-                            self.profilePic.image = image
-                        }
-                        else {
-                            print(error?.localizedDescription as Any)
-                        }
+            let userImageFile = self.currentUser["picture"] as? PFFileObject
+            userImageFile?.getDataInBackground { (imageData: Data?, error: Error?) -> Void in
+                if error == nil {
+                    if let imageData = imageData {
+                        let image = UIImage(data:imageData)
+                        self.profilePic.image = image
+                    }
+                    else {
+                        print(error?.localizedDescription as Any)
+                    }
                 }
             }
         }
@@ -176,6 +169,7 @@ class ProfileVC: UIViewController{
     @IBOutlet weak var editUsernameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var followingSwitch: UISwitch!
+    
     
     //MARK: - Actions
     
@@ -196,8 +190,8 @@ class ProfileVC: UIViewController{
                         object.deleteInBackground()
                     }
                 }
-        })
-    }
+            })
+        }
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
@@ -247,7 +241,7 @@ class ProfileVC: UIViewController{
         self.tableview.reloadData()
     }
     
-
+    
     //MARK: - Functions
     
     private func greenColor() -> UIColor {
@@ -273,13 +267,10 @@ class ProfileVC: UIViewController{
         present(logoutPopup, animated: true, completion: nil)
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
 }
 
-    //MARK: - TableView Delegate
+
+//MARK: - TableView Delegate
 
 extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -337,7 +328,8 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-    //MARK: - ImagePickerDelegate
+
+//MARK: - ImagePickerDelegate
 
 extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -362,13 +354,15 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
             
             let imageData = selectedPhoto.pngData()
             if let imageFile = PFFileObject(data: imageData!) {
-            self.currentUser["picture"] = imageFile
-            self.currentUser.saveInBackground()
+                self.currentUser["picture"] = imageFile
+                self.currentUser.saveInBackground()
             }
         })
     }
 }
 
+
+//MARK: - TabBarControllerDelegate
 
 extension ProfileVC: UITabBarControllerDelegate {
     

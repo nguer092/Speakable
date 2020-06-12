@@ -72,7 +72,6 @@ class HomeTableViewCell: UITableViewCell {
         audioPlayer.currentTime += 5
         }
     }
-    
 
 }
 
