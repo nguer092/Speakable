@@ -23,11 +23,7 @@ class HomeVC: UITableViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        
         if PFUser.current() == nil {
             goToLogin()
         } else {

@@ -370,6 +370,7 @@ extension ProfileVC: UITabBarControllerDelegate {
         if viewController === self.navigationController && self.isViewLoaded  {
             if self.view.window != nil {
                 currentUser = PFUser.current()
+                self.profilePic.image = self.currentUser["picture"] as? UIImage ?? nil
                 setupProfile()
                 self.tableview.reloadData()
             }
