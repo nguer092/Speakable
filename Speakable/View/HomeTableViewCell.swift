@@ -17,7 +17,6 @@ class HomeTableViewCell: UITableViewCell {
     var audioFile: Data?
     var audioPlayer : AVAudioPlayer!
     var timer = Timer()
-    var listens = 0
     var playButtonTapped : (()->())?
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -27,10 +26,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var listensCountLabel: UILabel!
     
     
-    
     @IBAction func playButtonTapped(_ sender: UIButton) {
         playButtonTapped?()
-        self.listens += 1
+        
         if self.audioPlayer != nil {
             if self.audioPlayer.isPlaying {
                 self.audioPlayer.pause()
@@ -83,6 +81,7 @@ extension HomeTableViewCell{
     func configureCell(pod: Pod){
         self.usernameLabel.text = pod.createdBy.username
         self.audioFile = pod.audio
+        self.listensCountLabel.text = "Listeners: \(pod.listens)"
         self.descriptionLabel.text = pod.podDescription
         let userImageFile = pod.createdBy["picture"] as? PFFileObject
         userImageFile?.getDataInBackground {
@@ -101,19 +100,15 @@ extension HomeTableViewCell{
         profilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         self.profilePicture.setRadius()
         self.profilePicture.isUserInteractionEnabled = true
-        self.listensCountLabel.text = "Listeners: \(self.listens)"
     }
     
     
     @objc func updateProgress() {
-        // Increase progress value
         progressView.progress = Float(self.audioPlayer.currentTime / self.audioPlayer.duration)
-        
         if self.progressView.progress >= 1 {
             self.timer.invalidate()
             self.progressView.progress = 0.0
         }
-        
         if self.audioPlayer?.isPlaying == false {
             self.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
         }

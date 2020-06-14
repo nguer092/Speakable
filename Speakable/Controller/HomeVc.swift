@@ -24,7 +24,6 @@ class HomeVC: UITableViewController {
      
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         if PFUser.current() == nil {
             goToLogin()
         } else {
@@ -49,6 +48,7 @@ class HomeVC: UITableViewController {
         let podQuery = Pod.query()
         podQuery?.includeKey("createdBy")
         podQuery?.includeKey("audio")
+        podQuery?.includeKey("listens")
         podQuery?.addDescendingOrder("createdAt")
         podQuery?.findObjectsInBackground{ (objects: [PFObject]?, error) in
             if error != nil {
@@ -78,22 +78,23 @@ extension HomeVC: UIGestureRecognizerDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? HomeTableViewCell else {
             return UITableViewCell() }
 
-        //Pass Pods
         cell.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
         
-        //Only one cell can Play at a time
         cell.playButtonTapped = {
-            for tempCell in tableView.visibleCells {
+            pod.incrementKey("listens", byAmount: 0.5)
+        pod.saveInBackground()
+            
+        for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
                     if let ultraAudioPlayer = ultraTempCell.audioPlayer {
-                    ultraAudioPlayer.pause()
-                    ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                        ultraAudioPlayer.pause()
+                        ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
                     } }
             }
         }
-        //Tap Gesture
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
         tap.delegate = self as UIGestureRecognizerDelegate
         cell.profilePicture.addGestureRecognizer(tap)
