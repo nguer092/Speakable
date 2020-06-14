@@ -269,7 +269,7 @@ class ProfileVC: UIViewController{
 }
 
 
-//MARK: - TableView Delegate
+    //MARK: - TableView Delegate
 
 extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -325,10 +325,38 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
         return 150
     }
     
+    
+    //MARK: - Pod Deletion
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if currentUser == PFUser.current() { return true }
+        else {return false}
+    
+}
+     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+         return UITableViewCell.EditingStyle.none
+     }
+    
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+             self.removePod(atIndexPath: indexPath)
+             tableView.deleteRows(at: [indexPath], with: .automatic)
+         }
+         deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+         return swipeActions
+     }
+     
+     func removePod(atIndexPath indexPath: IndexPath) {
+         let pod = pods[indexPath.row]
+         pods.remove(at: indexPath.row)
+         pod.deleteInBackground()
+     }
+    
 }
 
 
-//MARK: - ImagePickerDelegate
+    //MARK: - ImagePickerDelegate
 
 extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -359,7 +387,7 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
 }
 
 
-//MARK: - TabBarControllerDelegate
+    //MARK: - TabBarControllerDelegate
 
 extension ProfileVC: UITabBarControllerDelegate {
     
