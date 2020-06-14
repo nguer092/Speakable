@@ -17,10 +17,10 @@ class ProfileVC: UIViewController{
         super.viewDidLoad()
         guard (tabBarController as? TabViewController) != nil else { return }
         
-        self.profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
+        profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
+        profilePic.contentMode = UIView.ContentMode.scaleAspectFill
         profilePic.isUserInteractionEnabled = true
         profilePic.setRadius()
-        profilePic.contentMode = UIView.ContentMode.scaleAspectFill
         editUsernameTextField.isHidden = true
         saveButton.isHidden = true
         navigationController?.navigationBar.isHidden = true
@@ -86,7 +86,7 @@ class ProfileVC: UIViewController{
         })
         
         let subscribersQuery = Following.query()
-        subscribersQuery?.whereKey("following", equalTo: currentUser.objectId as Any)
+        subscribersQuery?.whereKey("following", equalTo: currentUser?.objectId as Any)
         subscribersQuery?.includeKey("follower")
         subscribersQuery?.findObjectsInBackground(block: {(objects, error) in
             if let objects = objects {
@@ -100,7 +100,7 @@ class ProfileVC: UIViewController{
         
         func querySubscribed () {
             let subscribedQuery = Following.query()
-            subscribedQuery?.whereKey("follower", equalTo: currentUser.objectId as Any)
+            subscribedQuery?.whereKey("follower", equalTo: currentUser?.objectId as Any)
             subscribersQuery?.includeKey("following")
             subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
                 if let objects = objects {
@@ -211,7 +211,6 @@ class ProfileVC: UIViewController{
         editButton.isHidden = false
         editUsernameTextField.isHidden = true
         self.editUsernameTextField.resignFirstResponder()
-        
         self.currentUser.username = editUsernameTextField.text
         self.currentUser.saveInBackground()
         usernameLabel.text = currentUser?.username
@@ -348,10 +347,8 @@ extension ProfileVC: UINavigationControllerDelegate, UIImagePickerControllerDele
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedPhoto = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as! UIImage
-        
         dismiss(animated: true, completion: {
             self.profilePic.image = selectedPhoto
-            
             let imageData = selectedPhoto.pngData()
             if let imageFile = PFFileObject(data: imageData!) {
                 self.currentUser["picture"] = imageFile

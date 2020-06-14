@@ -20,7 +20,6 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
         tabBarController?.tabBar.isHidden = true
         playButton.isEnabled = false
         recordingSession = AVAudioSession.sharedInstance()
-        
         do {
             try recordingSession.setCategory(AVAudioSession.Category.playAndRecord)
             try recordingSession.setActive(true)
@@ -36,9 +35,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
         } catch {
             print("Failed to record!")
         }
-        
         // Audio Settings
-        
         settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -56,6 +53,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     var audioRecorder: AVAudioRecorder!
     var audioPlayer : AVAudioPlayer!
     var settings = [String : Int]()
+    override var prefersStatusBarHidden: Bool { return true }
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
@@ -66,7 +64,6 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var descriptionTextField: UITextField!
     
     @IBAction func recordButtonTapped(_ sender: UIButton) {
-        
         if audioRecorder == nil  {
             startRecording()
             runTimer()
@@ -85,15 +82,14 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
-        
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: audioRecorder.url)
-                self.audioPlayer.prepareToPlay()
-                self.audioPlayer.delegate = self
-                self.audioPlayer.play()
-            } catch {
-                print(#line, error.localizedDescription)
-            }
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: audioRecorder.url)
+            self.audioPlayer.prepareToPlay()
+            self.audioPlayer.delegate = self
+            self.audioPlayer.play()
+        } catch {
+            print(#line, error.localizedDescription)
+        }
     }
     
     
@@ -129,32 +125,24 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     
     //MARK: - Functions
     
-    
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(AddPostVC.updateTimer)), userInfo: nil, repeats: true)
     }
     
-    
     @objc func updateTimer() {
         if seconds > 0 {
-        seconds -= 1
-        timeLabel.text = timeString(time: TimeInterval(seconds))
+            seconds -= 1
+            timeLabel.text = timeString(time: TimeInterval(seconds))
         }
         else {
             timer.invalidate()
         }
     }
     
-    
     func timeString(time:TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i", minutes, seconds)
-    }
-    
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
     
 }

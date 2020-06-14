@@ -12,18 +12,19 @@ import Parse
 class HomeVC: UITableViewController {
     
     //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         self.tableView.allowsSelection = false
+        self.navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     
      
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        
+
         if PFUser.current() == nil {
             goToLogin()
         } else {
@@ -32,12 +33,14 @@ class HomeVC: UITableViewController {
     }
     
     
-    //MARK: Properties, Outlets, Actions
+    //MARK: Properties, Outlets
+    
     var pods: [Pod] = []
     let tap = UITapGestureRecognizer.self
     var check = Array<Bool>()
     
-    //MARK: Functions
+    //MARK: Actions, Functions
+    
     private func goToLogin() {
         performSegue(withIdentifier: "LoginViewController", sender: self)
     }
@@ -59,10 +62,9 @@ class HomeVC: UITableViewController {
     }
 }
 
+    //MARK: - TableView Delegate
 
 extension HomeVC: UIGestureRecognizerDelegate {
-    
-    //MARK: - Table View Methods
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -81,6 +83,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
         
+        //Only one cell can Play at a time
         cell.playButtonTapped = {
             for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
@@ -90,7 +93,6 @@ extension HomeVC: UIGestureRecognizerDelegate {
                     } }
             }
         }
-        
         //Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
         tap.delegate = self as UIGestureRecognizerDelegate
@@ -99,15 +101,17 @@ extension HomeVC: UIGestureRecognizerDelegate {
     }
     
  
-    
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         let point = sender!.location(in: view)
         guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+        
         let pod = pods[indexPath.row]
         var currentUser = pod.createdBy
+        
         if pod.createdBy.email == PFUser.current()?.email{
             currentUser = PFUser.current()!
         }
+        
         guard let tabController = tabBarController as? TabViewController else { return }
         tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1

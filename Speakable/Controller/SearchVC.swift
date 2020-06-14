@@ -12,9 +12,10 @@ import Parse
 class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
-    var users = [PFUser]()
+    var users : [PFUser] = []
     var filteredUsers = [PFUser]()
     let searchController = UISearchController(searchResultsController: nil)
+    let tap = UITapGestureRecognizer.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +30,10 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Users"
         definesPresentationContext = true
-        
         fetchUsers()
     }
     
-    // MARK: - Private instance methods
+    // MARK: - Methods
     
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
@@ -65,9 +65,14 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         return searchController.isActive && !searchBarIsEmpty()
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell", for: indexPath) as! FollowingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! FollowingTableViewCell
+        
         let user: PFUser
         if isFiltering() {
             user = filteredUsers[indexPath.row]
@@ -75,6 +80,11 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
             user = users[indexPath.row]
         }
         cell.usernameSearchLabel?.text = user.username
+        
+        //Tap Gesture
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SearchVC.handleTap))
+        tap.delegate = self as UIGestureRecognizerDelegate
+        cell.addGestureRecognizer(tap)
         return cell
     }
     
@@ -85,8 +95,21 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         return users.count
         }
     }
- 
+}
+
+
+extension SearchVC: UIGestureRecognizerDelegate {
     
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        let point = sender!.location(in: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+        
+        let currentUser = users[indexPath.row]
+        
+        guard let tabController = tabBarController as? TabViewController else { return }
+        tabController.currentUser = currentUser
+        tabBarController?.selectedIndex = 1
+    }
 }
 
 extension SearchVC: UISearchResultsUpdating {
