@@ -50,6 +50,7 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     func fetchUsers() {
         let userQuery = PFUser.query()
         userQuery?.includeKey("username")
+        userQuery?.includeKey("picture")
         userQuery?.findObjectsInBackground{ (objects: [PFObject]?, error) in
             if error != nil {
                 print("Error")
@@ -79,7 +80,10 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         } else {
             user = users[indexPath.row]
         }
-        cell.usernameSearchLabel?.text = user.username
+//        cell.usernameSearchLabel?.text = user.username
+        
+        cell.configureSearchCell(user: user)
+        
         
         //Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(SearchVC.handleTap))

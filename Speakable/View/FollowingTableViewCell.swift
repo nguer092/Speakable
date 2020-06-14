@@ -12,12 +12,12 @@ import Parse
 class FollowingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var usernameSearchLabel: UILabel!
+    @IBOutlet weak var profilePic: UIImageView!
     
     func configureCell(user: String){
         var mutableUser = user
-        
+
         let nameQuery = PFUser.query()
         nameQuery?.whereKey("objectId", equalTo: user)
         nameQuery?.includeKey("objectId")
@@ -28,6 +28,29 @@ class FollowingTableViewCell: UITableViewCell {
                 self.usernameLabel.text = mutableUser
             }
         })
+
     }
     
-}
+    func configureSearchCell(user: PFUser){
+        self.usernameSearchLabel.text = user.username
+        let userImageFile = user["picture"] as? PFFileObject
+        userImageFile?.getDataInBackground(block: { (imageData, error) -> Void in
+            if error == nil {
+                if let imageData = imageData {
+                    let image = UIImage(data: imageData)
+                    self.profilePic.image = image
+                }
+            }
+            else {
+                print(error?.localizedDescription as Any)
+            }
+        })
+        profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
+        profilePic.contentMode = UIView.ContentMode.scaleAspectFill
+        profilePic.setRadius()
+        profilePic.isUserInteractionEnabled = true
+        }
+        
+    }
+    
+

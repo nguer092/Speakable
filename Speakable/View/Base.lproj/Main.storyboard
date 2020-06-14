@@ -392,7 +392,7 @@
             <objects>
                 <tableViewController id="PcJ-OG-6aW" customClass="HomeVC" customModule="Speakable" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cdg-az-3va">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -520,11 +520,12 @@
                     <navigationItem key="navigationItem" title="speakable" id="KsX-kh-FjR">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="bwMic" style="done" id="vjd-Fx-Cxb">
                             <connections>
-                                <segue destination="LeI-mG-8dk" kind="show" id="13l-uG-ULC"/>
+                                <segue destination="LeI-mG-8dk" kind="presentation" id="13l-uG-ULC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <segue destination="RZO-zf-KlG" kind="show" identifier="LoginViewController" id="bLo-pA-5LX"/>
                     </connections>
@@ -544,6 +545,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pw6-zB-Gu5">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="PcJ-OG-6aW" kind="relationship" relationship="rootViewController" id="rTP-Tz-oWs"/>
                     </connections>
@@ -824,15 +828,15 @@
                                             <outlet property="progressView" destination="Lpi-pS-UyN" id="Yh9-E3-1Tj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowingCell" id="Osk-k1-QQJ" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="178" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowingCell" rowHeight="65" id="Osk-k1-QQJ" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="178" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Osk-k1-QQJ" id="9Au-yI-gum">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lk-uE-3R8">
-                                                    <rect key="frame" x="30" y="22" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="30" y="32.5" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -886,7 +890,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1523" y="-620"/>
+            <point key="canvasLocation" x="1521.7391304347827" y="-620.08928571428567"/>
         </scene>
         <!--Profile-->
         <scene sceneID="42C-7v-DUy">
@@ -919,22 +923,22 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="OxM-9t-CZk" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="65" id="OxM-9t-CZk" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OxM-9t-CZk" id="qaM-Lp-bPb">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jL4-t6-vgh">
-                                                    <rect key="frame" x="8" y="11" width="375" height="22"/>
+                                                    <rect key="frame" x="87" y="21.5" width="307" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="J59-mr-M7O"/>
-                                                        <constraint firstAttribute="width" constant="375" id="d9n-9X-Y9s"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content=" ">
                                                             <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <font key="NSFont" size="16" name="AvenirNext-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -942,14 +946,24 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-user-7" translatesAutoresizingMaskIntoConstraints="NO" id="Xds-v9-px6">
+                                                    <rect key="frame" x="20" y="7.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="1wq-jg-CSK"/>
+                                                        <constraint firstAttribute="height" constant="50" id="s03-7V-1vy"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="jL4-t6-vgh" firstAttribute="leading" secondItem="qaM-Lp-bPb" secondAttribute="leading" constant="8" id="4fV-mt-h3Y"/>
+                                                <constraint firstItem="Xds-v9-px6" firstAttribute="centerY" secondItem="qaM-Lp-bPb" secondAttribute="centerY" id="QE1-1L-JEi"/>
+                                                <constraint firstItem="jL4-t6-vgh" firstAttribute="trailing" secondItem="qaM-Lp-bPb" secondAttribute="trailingMargin" id="e2U-bp-6VN"/>
                                                 <constraint firstItem="jL4-t6-vgh" firstAttribute="centerY" secondItem="qaM-Lp-bPb" secondAttribute="centerY" id="fWT-x9-E79"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jL4-t6-vgh" secondAttribute="trailing" constant="31" id="qEt-Ry-Huh"/>
+                                                <constraint firstItem="jL4-t6-vgh" firstAttribute="leading" secondItem="Xds-v9-px6" secondAttribute="trailing" constant="17" id="gEz-Ug-yHu"/>
+                                                <constraint firstItem="Xds-v9-px6" firstAttribute="leading" secondItem="qaM-Lp-bPb" secondAttribute="leading" constant="20" id="jbE-N1-NQ0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="profilePic" destination="Xds-v9-px6" id="jcD-zT-QHS"/>
                                             <outlet property="usernameSearchLabel" destination="jL4-t6-vgh" id="FrD-88-vyh"/>
                                         </connections>
                                     </tableViewCell>
@@ -998,15 +1012,15 @@
             <objects>
                 <viewController id="LeI-mG-8dk" customClass="AddPostVC" customModule="Speakable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zXu-Ap-FMC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bk" translatesAutoresizingMaskIntoConstraints="NO" id="OZc-o9-VAZ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="dwE-29-ckE">
-                                <rect key="frame" x="32" y="94" width="350" height="557.5"/>
+                                <rect key="frame" x="32" y="50" width="350" height="557.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="0BT-92-cce">
                                         <rect key="frame" x="53.5" y="0.0" width="243" height="55"/>
@@ -1083,14 +1097,7 @@
                         <viewLayoutGuide key="safeArea" id="WYH-VI-eWP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="d2i-j0-xge"/>
-                    <navigationItem key="navigationItem" id="ZjF-P6-CgA">
-                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="E4Y-Wj-CXD">
-                            <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="backButtonTapped:" destination="LeI-mG-8dk" id="WDQ-Um-imf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ZjF-P6-CgA"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1103,7 +1110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3T-Zh-xkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2362" y="658"/>
+            <point key="canvasLocation" x="2181" y="73"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
