@@ -83,7 +83,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
         cell.configureCell(pod: pod)
         
         cell.playButtonTapped = {
-            pod.incrementKey("listens", byAmount: 0.5)
+        pod.incrementKey("listens", byAmount: 0.5)
         pod.saveInBackground()
             
         for tempCell in tableView.visibleCells {
@@ -118,6 +118,33 @@ extension HomeVC: UIGestureRecognizerDelegate {
         tabBarController?.selectedIndex = 1
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let pod = pods[indexPath.row]
+        if pod.createdBy.email == PFUser.current()?.email {
+            return true
+        }
+        else { return false }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
+    }
+   
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            self.removePod(atIndexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeActions
+    }
+    
+    func removePod(atIndexPath indexPath: IndexPath) {
+        let pod = pods[indexPath.row]
+        pods.remove(at: indexPath.row)
+        pod.deleteInBackground()
+    }
  
     
     

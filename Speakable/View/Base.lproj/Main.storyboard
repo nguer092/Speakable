@@ -886,7 +886,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1476.8115942028987" y="-620.08928571428567"/>
+            <point key="canvasLocation" x="1523" y="-620"/>
         </scene>
         <!--Profile-->
         <scene sceneID="42C-7v-DUy">
@@ -1103,7 +1103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3T-Zh-xkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2343" y="73"/>
+            <point key="canvasLocation" x="2362" y="658"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
