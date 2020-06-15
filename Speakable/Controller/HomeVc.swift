@@ -23,8 +23,8 @@ class HomeVC: UITableViewController {
         self.tabBarController?.tabBar.isHidden = false
         
         let refreshControl = UIRefreshControl()
-         refreshControl.addTarget(self, action:  #selector(refreshPods), for: .valueChanged)
-         self.refreshControl = refreshControl
+        refreshControl.addTarget(self, action:  #selector(refreshPods), for: .valueChanged)
+        self.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +76,10 @@ class HomeVC: UITableViewController {
         cell.configureCell(pod: pod)
         
         cell.playButtonTapped = {
+            if (cell.audioPlayer?.isPlaying) != nil {
             pod.incrementKey("listens", byAmount: 1)
             pod.saveInBackground()
+            }
             for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
                     if let ultraAudioPlayer = ultraTempCell.audioPlayer {
