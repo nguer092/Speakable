@@ -94,7 +94,6 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     
     
     @IBAction func saveTapped(_ sender: UIButton) {
-        // Get Url, Create data object, Create Pod, Save to Parse
         do {
             let data = try Data(contentsOf: tempFileURL)
             let pod = Pod()
@@ -110,16 +109,14 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
                 if (!success) {
                     print(#line, "fy===!")
                 }
-                self.navigationController?.popViewController(animated: true)
+                self.presentingViewController?.dismiss(animated: true, completion:{
+                    DataManager.shared.homeVC.fetchPods()
+                    DataManager.shared.homeVC.tableView.reloadData()
+                } )
             }
         } catch {
             print(#line, error.localizedDescription)
         }
-    }
-    
-    
-    @IBAction func backButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
     }
     
     

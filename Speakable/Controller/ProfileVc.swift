@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ProfileVC: UIViewController{
+class ProfileVC: UIViewController {
     
     //MARK: - Lifecycle
     
@@ -54,7 +54,6 @@ class ProfileVC: UIViewController{
     }
     
     func setupProfile() {
-        
         usernameLabel.text = currentUser?.username
         
         if currentUser != PFUser.current() {
@@ -85,7 +84,7 @@ class ProfileVC: UIViewController{
         })
         
         let subscribersQuery = Following.query()
-        subscribersQuery?.whereKey("following", equalTo: currentUser as PFUser)
+        subscribersQuery?.whereKey("following", equalTo: currentUser as Any)
         subscribersQuery?.includeKey("follower")
         subscribersQuery?.findObjectsInBackground(block: {(objects, error) in
             if let objects = objects {
@@ -100,7 +99,7 @@ class ProfileVC: UIViewController{
 
         func querySubscribed () {
             let subscribedQuery = Following.query()
-            subscribedQuery?.whereKey("follower", equalTo: currentUser as PFUser)
+            subscribedQuery?.whereKey("follower", equalTo: currentUser as Any)
             subscribersQuery?.includeKey("following")
             subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
                 if let objects = objects {
@@ -156,7 +155,7 @@ class ProfileVC: UIViewController{
             }
         }
     }
-    
+    let tap = UITapGestureRecognizer.self
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var podsButton: BottomBorderButton!
@@ -272,6 +271,8 @@ class ProfileVC: UIViewController{
 
 extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -289,6 +290,9 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.handleTap))
+        tap.delegate = self as UIGestureRecognizerDelegate
+        
         if displayState == .pods{
             let cell = tableView.dequeueReusableCell(withIdentifier: displayState.rawValue) as! ProfileTableViewCell
             let pod = pods[indexPath.row]
@@ -309,11 +313,13 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! FollowingTableViewCell
             let user = subscribed[indexPath.row]
             cell.configureSearchCell(user: user)
+            cell.addGestureRecognizer(tap)
             return cell
         } else if displayState == .subscribers {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! FollowingTableViewCell
             let user = subscribers[indexPath.row]
             cell.configureSearchCell(user: user)
+            cell.addGestureRecognizer(tap)
             return cell
         } else {
             return UITableViewCell()
@@ -394,11 +400,33 @@ extension ProfileVC: UITabBarControllerDelegate {
         if viewController === self.navigationController && self.isViewLoaded  {
             if self.view.window != nil {
                 currentUser = PFUser.current()
-                self.profilePic.image = self.currentUser["picture"] as? UIImage ?? nil
+                self.profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
                 setupProfile()
                 self.tableview.reloadData()
             }
         }
     }
 }
- 
+
+extension ProfileVC: UIGestureRecognizerDelegate {
+    
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        let point = sender!.location(in: tableview)
+        guard let indexPath = tableview.indexPathForRow(at: point) else { return }
+        
+        if displayState == .subscribed  {
+            currentUser = subscribed[indexPath.row]
+               } else if displayState == .subscribers {
+            currentUser = subscribers[indexPath.row]
+        }
+        guard let tabController = tabBarController as? TabViewController else { return }
+        tabController.currentUser = currentUser
+        tabBarController?.selectedIndex = 1
+        displayState = .pods
+        podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
+        subscribedButton.removeBottomBorder()
+        subscribersButton.removeBottomBorder()
+        setupProfile()
+        self.tableview.reloadData()
+}
+}

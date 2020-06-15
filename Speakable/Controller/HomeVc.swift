@@ -9,36 +9,39 @@
 import UIKit
 import Parse
 
+class DataManager {
+        static let shared = DataManager()
+        var homeVC = HomeVC()
+}
+
 class HomeVC: UITableViewController {
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataManager.shared.homeVC = self
         navigationController?.navigationBar.prefersLargeTitles = true
         self.tableView.allowsSelection = false
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
     }
     
-     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
         if PFUser.current() == nil {
             goToLogin()
         } else {
             fetchPods()
         }
     }
+
     
-    
-    //MARK: Properties, Outlets
+    //MARK: Properties, Outlets, Functions
     
     var pods: [Pod] = []
-    let tap = UITapGestureRecognizer.self
     var check = Array<Bool>()
-    
-    //MARK: Actions, Functions
     
     private func goToLogin() {
         performSegue(withIdentifier: "LoginViewController", sender: self)
@@ -78,14 +81,12 @@ extension HomeVC: UIGestureRecognizerDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? HomeTableViewCell else {
             return UITableViewCell() }
 
-        cell.profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
-        
+
         cell.playButtonTapped = {
         pod.incrementKey("listens", byAmount: 0.5)
         pod.saveInBackground()
-            
         for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
                     if let ultraAudioPlayer = ultraTempCell.audioPlayer {
@@ -146,7 +147,5 @@ extension HomeVC: UIGestureRecognizerDelegate {
         pod.deleteInBackground()
     }
  
-    
-    
 }
 
