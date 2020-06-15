@@ -11,28 +11,15 @@ import Parse
 
 class FollowingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameSearchLabel: UILabel!
     @IBOutlet weak var profilePic: UIImageView!
     
-    func configureCell(user: String){
-        var mutableUser = user
-
-        let nameQuery = PFUser.query()
-        nameQuery?.whereKey("objectId", equalTo: user)
-        nameQuery?.includeKey("objectId")
-        nameQuery?.includeKey("username")
-        nameQuery?.findObjectsInBackground(block: { (objects, error) in
-            for object in objects! {
-                mutableUser = object["username"] as! String
-                self.usernameLabel.text = mutableUser
-            }
-        })
-
-    }
     
     func configureSearchCell(user: PFUser){
-        self.usernameSearchLabel.text = user.username
+        do { try user.fetchIfNeeded()} catch {
+            print("error")
+        }
+        usernameSearchLabel.text = user.username
         let userImageFile = user["picture"] as? PFFileObject
         userImageFile?.getDataInBackground(block: { (imageData, error) -> Void in
             if error == nil {

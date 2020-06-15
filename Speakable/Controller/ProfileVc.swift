@@ -67,7 +67,6 @@ class ProfileVC: UIViewController{
             logoutButton.isHidden  = false
         }
         
-        // Query for pods, subscribers, subscribed
         let podQuery = Pod.query()
         podQuery?.whereKey("createdBy", equalTo: currentUser as Any)
         podQuery?.includeKey("audio")
@@ -86,38 +85,38 @@ class ProfileVC: UIViewController{
         })
         
         let subscribersQuery = Following.query()
-        subscribersQuery?.whereKey("following", equalTo: currentUser?.objectId as Any)
+        subscribersQuery?.whereKey("following", equalTo: currentUser as PFUser)
         subscribersQuery?.includeKey("follower")
         subscribersQuery?.findObjectsInBackground(block: {(objects, error) in
             if let objects = objects {
                 self.subscribers.removeAll()
                 for object in objects {
-                    self.subscribers.insert(object["follower"] as! String, at: 0)
+                    self.subscribers.insert(object["follower"] as! PFUser, at: 0)
                 }
             }
             querySubscribed()
         })
-        
+    
+
         func querySubscribed () {
             let subscribedQuery = Following.query()
-            subscribedQuery?.whereKey("follower", equalTo: currentUser?.objectId as Any)
+            subscribedQuery?.whereKey("follower", equalTo: currentUser as PFUser)
             subscribersQuery?.includeKey("following")
             subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
                 if let objects = objects {
                     self.subscribed.removeAll()
                     for object in objects {
-                        self.subscribed.insert(object["following"] as! String, at: 0)
+                        self.subscribed.insert(object["following"] as! PFUser, at: 0)
                     }
                 }
             })
         }
         
-        //Switch State
-        // Figure out which user's profile you're viewing and check if the current logged-in user is following them
         
+        //Switch State
         let switchQuery = Following.query()
-        switchQuery?.whereKey("follower", equalTo: PFUser.current()?.objectId as Any)
-        switchQuery?.whereKey("following", equalTo: currentUser.objectId as Any)
+        switchQuery?.whereKey("follower", equalTo: PFUser.current() as Any)
+        switchQuery?.whereKey("following", equalTo: currentUser as Any)
         switchQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print(error?.localizedDescription as Any)
@@ -133,8 +132,8 @@ class ProfileVC: UIViewController{
     //MARK:  - Properties, Outlets
     
     var pods: [Pod] = []
-    var subscribers: [String] = []
-    var subscribed: [String] = []
+    var subscribers: [PFUser] = []
+    var subscribed: [PFUser] = []
     var displayState = DisplayState.pods
     override var prefersStatusBarHidden: Bool { return true }
     var currentUser: PFUser! {
@@ -176,14 +175,14 @@ class ProfileVC: UIViewController{
     @IBAction func followSwitched(_ sender: UISwitch) {
         if followingSwitch.isOn {
             let following = PFObject(className: "Following")
-            following["follower"] = PFUser.current()?.objectId
-            following["following"] = currentUser.objectId
+            following["follower"] = PFUser.current()
+            following["following"] = currentUser
             following.saveInBackground()
         }
         else {
             let followingQuery = PFQuery(className: "Following")
-            followingQuery.whereKey("follower", equalTo: PFUser.current()?.objectId as Any)
-            followingQuery.whereKey("following", equalTo: currentUser.objectId as Any)
+            followingQuery.whereKey("follower", equalTo: PFUser.current() as Any)
+            followingQuery.whereKey("following", equalTo: currentUser as Any)
             followingQuery.findObjectsInBackground(block: { (objects, error) in
                 if let objects = objects {
                     for object in objects {
@@ -307,14 +306,14 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         } else if displayState == .subscribed  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! FollowingTableViewCell
             let user = subscribed[indexPath.row]
-            cell.configureCell(user: user)
+            cell.configureSearchCell(user: user)
             return cell
         } else if displayState == .subscribers {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FollowingCell") as! FollowingTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! FollowingTableViewCell
             let user = subscribers[indexPath.row]
-            cell.configureCell(user: user)
+            cell.configureSearchCell(user: user)
             return cell
         } else {
             return UITableViewCell()

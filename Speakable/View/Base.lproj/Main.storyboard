@@ -828,28 +828,38 @@
                                             <outlet property="progressView" destination="Lpi-pS-UyN" id="Yh9-E3-1Tj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowingCell" rowHeight="65" id="Osk-k1-QQJ" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="65" id="Osk-k1-QQJ" customClass="FollowingTableViewCell" customModule="Speakable" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Osk-k1-QQJ" id="9Au-yI-gum">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1lk-uE-3R8">
-                                                    <rect key="frame" x="30" y="32.5" width="0.0" height="0.0"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-user-7" translatesAutoresizingMaskIntoConstraints="NO" id="7tI-rJ-k9e">
+                                                    <rect key="frame" x="20" y="7.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="LS7-Us-8cX"/>
+                                                        <constraint firstAttribute="height" constant="50" id="aRL-nF-l03"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLh-0s-2dR">
+                                                    <rect key="frame" x="78" y="21.5" width="316" height="22"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1lk-uE-3R8" secondAttribute="trailing" constant="30" id="QU6-fs-IPf"/>
-                                                <constraint firstItem="1lk-uE-3R8" firstAttribute="leading" secondItem="9Au-yI-gum" secondAttribute="leading" constant="30" id="pb4-yV-W2k"/>
-                                                <constraint firstItem="1lk-uE-3R8" firstAttribute="centerY" secondItem="9Au-yI-gum" secondAttribute="centerY" id="wVL-Qb-eLo"/>
+                                                <constraint firstItem="GLh-0s-2dR" firstAttribute="leading" secondItem="7tI-rJ-k9e" secondAttribute="trailing" constant="8" id="1rk-Al-eVC"/>
+                                                <constraint firstItem="GLh-0s-2dR" firstAttribute="centerY" secondItem="9Au-yI-gum" secondAttribute="centerY" id="7Zb-xF-niv"/>
+                                                <constraint firstItem="7tI-rJ-k9e" firstAttribute="centerY" secondItem="9Au-yI-gum" secondAttribute="centerY" id="LvQ-ON-0Ym"/>
+                                                <constraint firstItem="7tI-rJ-k9e" firstAttribute="leading" secondItem="9Au-yI-gum" secondAttribute="leading" constant="20" id="ruL-gx-h3M"/>
+                                                <constraint firstItem="GLh-0s-2dR" firstAttribute="trailing" secondItem="9Au-yI-gum" secondAttribute="trailingMargin" id="xYg-oP-Q8s"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="usernameLabel" destination="1lk-uE-3R8" id="njW-fk-wfz"/>
+                                            <outlet property="profilePic" destination="7tI-rJ-k9e" id="J0M-hB-9JO"/>
+                                            <outlet property="usernameSearchLabel" destination="GLh-0s-2dR" id="fnH-TB-nXo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

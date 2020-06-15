@@ -80,7 +80,6 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         } else {
             user = users[indexPath.row]
         }
-//        cell.usernameSearchLabel?.text = user.username
         
         cell.configureSearchCell(user: user)
         

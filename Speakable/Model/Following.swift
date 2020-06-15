@@ -14,6 +14,7 @@ class Following: PFObject, PFSubclassing {
     static func parseClassName() -> String {
         return "Following"
     }
+    
     @NSManaged var follower : PFUser
     @NSManaged var following: PFUser
 }
