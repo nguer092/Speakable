@@ -21,6 +21,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var podDescription: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var listensLabel: UILabel!
     
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
@@ -69,6 +70,7 @@ class ProfileTableViewCell: UITableViewCell {
         self.progressView.progress = 0
         self.audioFile = pod.audio
         self.podDescription.text = pod.podDescription
+        self.listensLabel.text = "Listens: \(pod.listens)"
     }
     
     

@@ -76,7 +76,7 @@ class HomeVC: UITableViewController {
         cell.configureCell(pod: pod)
         
         cell.playButtonTapped = {
-            if (cell.audioPlayer?.isPlaying) != nil {
+            if (cell.audioPlayer) == nil {
             pod.incrementKey("listens", byAmount: 1)
             pod.saveInBackground()
             }

@@ -295,12 +295,16 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             cell.audioPlayer = nil
             
             cell.playButtonTapped = {
-                for tempCell in tableView.visibleCells {
-                    if let ultraTempCell = tempCell as? ProfileTableViewCell, ultraTempCell != cell {
-                        if let ultraAudioPlayer = ultraTempCell.audioPlayer {
-                            ultraAudioPlayer.pause()
-                            ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
-                        } }
+                if (cell.audioPlayer) == nil {
+                    pod.incrementKey("listens", byAmount: 1)
+                    pod.saveInBackground()
+                    for tempCell in tableView.visibleCells {
+                        if let ultraTempCell = tempCell as? ProfileTableViewCell, ultraTempCell != cell {
+                            if let ultraAudioPlayer = ultraTempCell.audioPlayer {
+                                ultraAudioPlayer.pause()
+                                ultraTempCell.playButton.setImage(#imageLiteral(resourceName: "bluePlay"), for: .normal)
+                            } }
+                    }
                 }
             }
             return cell

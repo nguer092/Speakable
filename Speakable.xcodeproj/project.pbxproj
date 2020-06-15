@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */; };
 		0122DB622497D3C900B19E90 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB612497D3C900B19E90 /* DataManager.swift */; };
+		0122DB692498371800B19E90 /* boy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB652498371500B19E90 /* boy.jpg */; };
+		0122DB6A2498371800B19E90 /* tape.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB662498371700B19E90 /* tape.mp4 */; };
 		0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651292484887F00C3CE6C /* DisplayState.swift */; };
 		0136512F248488E000C3CE6C /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136512E248488E000C3CE6C /* Pod.swift */; };
 		01365131248488F200C3CE6C /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365130248488F200C3CE6C /* Following.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		0122DB612497D3C900B19E90 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		0122DB652498371500B19E90 /* boy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boy.jpg; sourceTree = "<group>"; };
+		0122DB662498371700B19E90 /* tape.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tape.mp4; sourceTree = "<group>"; };
 		013651292484887F00C3CE6C /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		0136512E248488E000C3CE6C /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		01365130248488F200C3CE6C /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0122DB632498334D00B19E90 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				0122DB652498371500B19E90 /* boy.jpg */,
+				0122DB662498371700B19E90 /* tape.mp4 */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
 		013651282484886A00C3CE6C /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,12 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				0149B33724709567003C35B2 /* Info.plist */,
-				013651282484886A00C3CE6C /* Enums */,
 				0136512D248488D200C3CE6C /* Model */,
-				0136512B2484889500C3CE6C /* Supplementary Files */,
-				0149B34724709826003C35B2 /* Resources */,
+				013651282484886A00C3CE6C /* Enums */,
 				0149B3462470981C003C35B2 /* View */,
 				0149B3452470980E003C35B2 /* Controller */,
+				0149B34724709826003C35B2 /* Resources */,
+				0122DB632498334D00B19E90 /* Media */,
+				0136512B2484889500C3CE6C /* Supplementary Files */,
 			);
 			path = Speakable;
 			sourceTree = "<group>";
@@ -244,6 +258,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0122DB6A2498371800B19E90 /* tape.mp4 in Resources */,
+				0122DB692498371800B19E90 /* boy.jpg in Resources */,
 				0149B33624709567003C35B2 /* LaunchScreen.storyboard in Resources */,
 				0149B33324709567003C35B2 /* Assets.xcassets in Resources */,
 				0149B33124709563003C35B2 /* Main.storyboard in Resources */,
