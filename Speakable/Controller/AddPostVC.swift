@@ -111,7 +111,6 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
                 }
                 self.presentingViewController?.dismiss(animated: true, completion:{
                     DataManager.shared.homeVC.fetchPods()
-                    DataManager.shared.homeVC.tableView.reloadData()
                 } )
             }
         } catch {
@@ -120,7 +119,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     }
     
     
-    //MARK: - Functions
+    //MARK: - Timer
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(AddPostVC.updateTimer)), userInfo: nil, repeats: true)

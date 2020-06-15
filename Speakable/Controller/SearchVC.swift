@@ -15,7 +15,6 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     var users : [PFUser] = []
     var filteredUsers = [PFUser]()
     let searchController = UISearchController(searchResultsController: nil)
-    let tap = UITapGestureRecognizer.self
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,9 +107,8 @@ extension SearchVC: UIGestureRecognizerDelegate {
         guard let indexPath = tableView.indexPathForRow(at: point) else { return }
         
         let currentUser = users[indexPath.row]
-        
-        guard let tabController = tabBarController as? TabViewController else { return }
-        tabController.currentUser = currentUser
+
+        DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
     }
 }

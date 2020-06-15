@@ -9,10 +9,6 @@
 import UIKit
 import Parse
 
-class DataManager {
-        static let shared = DataManager()
-        var homeVC = HomeVC()
-}
 
 class HomeVC: UITableViewController {
     
@@ -29,23 +25,13 @@ class HomeVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
-        if PFUser.current() == nil {
-            goToLogin()
-        } else {
-            fetchPods()
-        }
+        fetchPods()
     }
-
     
-    //MARK: Properties, Outlets, Functions
+    
+    //MARK: = Properties, Actions, Methods
     
     var pods: [Pod] = []
-    var check = Array<Bool>()
-    
-    private func goToLogin() {
-        performSegue(withIdentifier: "LoginViewController", sender: self)
-    }
     
     func fetchPods() {
         let podQuery = Pod.query()
@@ -63,11 +49,7 @@ class HomeVC: UITableViewController {
             self.tableView.reloadData()
         }
     }
-}
-
-    //MARK: - TableView Delegate
-
-extension HomeVC: UIGestureRecognizerDelegate {
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -80,14 +62,14 @@ extension HomeVC: UIGestureRecognizerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? HomeTableViewCell else {
             return UITableViewCell() }
-
+        
         let pod = pods[indexPath.row]
         cell.configureCell(pod: pod)
-
+        
         cell.playButtonTapped = {
-        pod.incrementKey("listens", byAmount: 0.5)
-        pod.saveInBackground()
-        for tempCell in tableView.visibleCells {
+            pod.incrementKey("listens", byAmount: 0.5)
+            pod.saveInBackground()
+            for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
                     if let ultraAudioPlayer = ultraTempCell.audioPlayer {
                         ultraAudioPlayer.pause()
@@ -95,28 +77,11 @@ extension HomeVC: UIGestureRecognizerDelegate {
                     } }
             }
         }
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
         tap.delegate = self as UIGestureRecognizerDelegate
         cell.profilePicture.addGestureRecognizer(tap)
         return cell
-    }
-    
- 
-    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
-        let point = sender!.location(in: view)
-        guard let indexPath = tableView.indexPathForRow(at: point) else { return }
-        
-        let pod = pods[indexPath.row]
-        var currentUser = pod.createdBy
-        
-        if pod.createdBy.email == PFUser.current()?.email{
-            currentUser = PFUser.current()!
-        }
-        
-        guard let tabController = tabBarController as? TabViewController else { return }
-        tabController.currentUser = currentUser
-        tabBarController?.selectedIndex = 1
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -130,7 +95,7 @@ extension HomeVC: UIGestureRecognizerDelegate {
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return UITableViewCell.EditingStyle.none
     }
-   
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
             self.removePod(atIndexPath: indexPath)
@@ -146,6 +111,26 @@ extension HomeVC: UIGestureRecognizerDelegate {
         pods.remove(at: indexPath.row)
         pod.deleteInBackground()
     }
- 
+    
+}
+
+
+extension HomeVC: UIGestureRecognizerDelegate {
+    
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        let point = sender!.location(in: view)
+        guard let indexPath = tableView.indexPathForRow(at: point) else { return }
+        
+        let pod = pods[indexPath.row]
+        var currentUser = pod.createdBy
+        
+        if pod.createdBy.email == PFUser.current()?.email{
+            currentUser = PFUser.current()!
+        }
+
+        DataManager.shared.tabController.currentUser = currentUser
+        tabBarController?.selectedIndex = 1
+    }
+    
 }
 

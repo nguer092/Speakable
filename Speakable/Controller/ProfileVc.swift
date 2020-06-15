@@ -15,7 +15,6 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard (tabBarController as? TabViewController) != nil else { return }
         
         profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
         profilePic.contentMode = UIView.ContentMode.scaleAspectFill
@@ -25,7 +24,6 @@ class ProfileVC: UIViewController {
         saveButton.isHidden = true
         navigationController?.navigationBar.isHidden = true
         podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        
         self.tableview.dataSource = self
         self.tableview.delegate = self
         self.tabBarController?.delegate = self
@@ -35,18 +33,15 @@ class ProfileVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        guard let tabController = tabBarController as? TabViewController else { return }
-        tabController.currentUser = nil
+        DataManager.shared.tabController.currentUser = nil
         currentUser = nil
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let tabController = tabBarController as? TabViewController else { return }
-        
-        if tabController.currentUser != nil {
-            currentUser = tabController.currentUser
+        if DataManager.shared.tabController.currentUser != nil {
+            currentUser = DataManager.shared.tabController.currentUser
         } else {
             currentUser = PFUser.current()
         }
@@ -155,7 +150,6 @@ class ProfileVC: UIViewController {
             }
         }
     }
-    let tap = UITapGestureRecognizer.self
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var podsButton: BottomBorderButton!
@@ -216,34 +210,36 @@ class ProfileVC: UIViewController {
     
     @IBAction func podsButtonClicked(_ sender: BottomBorderButton) {
         displayState = .pods
-        podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        subscribedButton.removeBottomBorder()
-        subscribersButton.removeBottomBorder()
+        styleButtons(greenbutton: podsButton, otherbutton: subscribedButton, lastbutton: subscribersButton)
         self.tableview.reloadData()
     }
     
     @IBAction func subscribedButtonClicked(_ sender: BottomBorderButton) {
         displayState = .subscribed
-        subscribedButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        podsButton.removeBottomBorder()
-        subscribersButton.removeBottomBorder()
+        styleButtons(greenbutton: subscribedButton, otherbutton: podsButton, lastbutton: subscribersButton)
         self.tableview.reloadData()
     }
     
     @IBAction func subscribersButtonClicked(_ sender: BottomBorderButton) {
         displayState = .subscribers
-        subscribersButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        podsButton.removeBottomBorder()
-        subscribedButton.removeBottomBorder()
+        styleButtons(greenbutton: subscribersButton, otherbutton: podsButton, lastbutton: subscribedButton)
         self.tableview.reloadData()
     }
     
-    
+
     //MARK: - Functions
+    
+    func styleButtons(greenbutton: BottomBorderButton, otherbutton: BottomBorderButton, lastbutton: BottomBorderButton) {
+        greenbutton.addBottomBorderWithColor(color: greenColor(), width: 3)
+        otherbutton.removeBottomBorder()
+        lastbutton.removeBottomBorder()
+    }
+    
     
     private func greenColor() -> UIColor {
         return UIColor(displayP3Red: 154.0/255.0, green: 251.0/255.0, blue: 126.0/255.0, alpha: 0.75)
     }
+    
     
     private func goToLaunch() {
         let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
@@ -270,8 +266,6 @@ class ProfileVC: UIViewController {
     //MARK: - TableView Delegate
 
 extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
-    
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -326,12 +320,12 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
     
     
-    //MARK: - Pod Deletion
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if currentUser == PFUser.current() { return true }
         else {return false}
@@ -400,7 +394,7 @@ extension ProfileVC: UITabBarControllerDelegate {
         if viewController === self.navigationController && self.isViewLoaded  {
             if self.view.window != nil {
                 currentUser = PFUser.current()
-                self.profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
+                profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
                 setupProfile()
                 self.tableview.reloadData()
             }
@@ -419,13 +413,11 @@ extension ProfileVC: UIGestureRecognizerDelegate {
                } else if displayState == .subscribers {
             currentUser = subscribers[indexPath.row]
         }
-        guard let tabController = tabBarController as? TabViewController else { return }
-        tabController.currentUser = currentUser
+
+        DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
         displayState = .pods
-        podsButton.addBottomBorderWithColor(color: greenColor(), width: 3)
-        subscribedButton.removeBottomBorder()
-        subscribersButton.removeBottomBorder()
+        styleButtons(greenbutton: podsButton, otherbutton: subscribersButton, lastbutton: subscribedButton)
         setupProfile()
         self.tableview.reloadData()
 }

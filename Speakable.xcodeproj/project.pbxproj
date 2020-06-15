@@ -8,15 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */; };
+		0122DB622497D3C900B19E90 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB612497D3C900B19E90 /* DataManager.swift */; };
 		0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651292484887F00C3CE6C /* DisplayState.swift */; };
 		0136512F248488E000C3CE6C /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136512E248488E000C3CE6C /* Pod.swift */; };
 		01365131248488F200C3CE6C /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365130248488F200C3CE6C /* Following.swift */; };
 		013651332484897D00C3CE6C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651322484897D00C3CE6C /* HomeTableViewCell.swift */; };
 		01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */; };
 		01365137248489F300C3CE6C /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365136248489F300C3CE6C /* FollowingTableViewCell.swift */; };
-		0136513B24848CF400C3CE6C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136513A24848CF400C3CE6C /* TabViewController.swift */; };
-		0136513F2484907800C3CE6C /* ImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136513E2484907800C3CE6C /* ImageViewExt.swift */; };
-		013651412484909700C3CE6C /* BottomBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651402484909700C3CE6C /* BottomBorderButton.swift */; };
 		0149B32824709563003C35B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B32724709563003C35B2 /* AppDelegate.swift */; };
 		0149B32A24709563003C35B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B32924709563003C35B2 /* SceneDelegate.swift */; };
 		0149B32C24709563003C35B2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149B32B24709563003C35B2 /* HomeVC.swift */; };
@@ -35,15 +33,13 @@
 
 /* Begin PBXFileReference section */
 		0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		0122DB612497D3C900B19E90 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		013651292484887F00C3CE6C /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		0136512E248488E000C3CE6C /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		01365130248488F200C3CE6C /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
 		013651322484897D00C3CE6C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		01365136248489F300C3CE6C /* FollowingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTableViewCell.swift; sourceTree = "<group>"; };
-		0136513A24848CF400C3CE6C /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		0136513E2484907800C3CE6C /* ImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExt.swift; sourceTree = "<group>"; };
-		013651402484909700C3CE6C /* BottomBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBorderButton.swift; sourceTree = "<group>"; };
 		0149B32424709563003C35B2 /* Speakable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speakable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0149B32724709563003C35B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0149B32924709563003C35B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,20 +90,12 @@
 			path = "Supplementary Files";
 			sourceTree = "<group>";
 		};
-		0136512C248488BB00C3CE6C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				0136513E2484907800C3CE6C /* ImageViewExt.swift */,
-				013651402484909700C3CE6C /* BottomBorderButton.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		0136512D248488D200C3CE6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				0136512E248488E000C3CE6C /* Pod.swift */,
 				01365130248488F200C3CE6C /* Following.swift */,
+				0122DB612497D3C900B19E90 /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +130,6 @@
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
 				0149B32D24709563003C35B2 /* ProfileVC.swift */,
 				0149B33D24709776003C35B2 /* SearchVC.swift */,
-				0136513A24848CF400C3CE6C /* TabViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -172,7 +159,6 @@
 				0149B33724709567003C35B2 /* Info.plist */,
 				013651282484886A00C3CE6C /* Enums */,
 				0136512D248488D200C3CE6C /* Model */,
-				0136512C248488BB00C3CE6C /* Extensions */,
 				0136512B2484889500C3CE6C /* Supplementary Files */,
 				0149B34724709826003C35B2 /* Resources */,
 				0149B3462470981C003C35B2 /* View */,
@@ -315,17 +301,15 @@
 			files = (
 				0149B3442470980A003C35B2 /* AddPostVC.swift in Sources */,
 				01365131248488F200C3CE6C /* Following.swift in Sources */,
-				013651412484909700C3CE6C /* BottomBorderButton.swift in Sources */,
 				0149B32E24709563003C35B2 /* ProfileVC.swift in Sources */,
 				0149B3492470D165003C35B2 /* SignupVC.swift in Sources */,
 				0136512F248488E000C3CE6C /* Pod.swift in Sources */,
 				013651332484897D00C3CE6C /* HomeTableViewCell.swift in Sources */,
-				0136513B24848CF400C3CE6C /* TabViewController.swift in Sources */,
 				0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */,
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
+				0122DB622497D3C900B19E90 /* DataManager.swift in Sources */,
 				01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */,
 				0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */,
-				0136513F2484907800C3CE6C /* ImageViewExt.swift in Sources */,
 				0149B33E24709776003C35B2 /* SearchVC.swift in Sources */,
 				0149B32C24709563003C35B2 /* HomeVC.swift in Sources */,
 				0149B34E2470D302003C35B2 /* InitialVC.swift in Sources */,
