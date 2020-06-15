@@ -106,8 +106,10 @@ extension SearchVC: UIGestureRecognizerDelegate {
         let point = sender!.location(in: tableView)
         guard let indexPath = tableView.indexPathForRow(at: point) else { return }
         
-        let currentUser = users[indexPath.row]
-
+        var currentUser = users[indexPath.row]
+        if currentUser.email == PFUser.current()?.email {
+            currentUser = PFUser.current()!
+        }
         DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
     }

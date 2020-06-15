@@ -413,6 +413,10 @@ extension ProfileVC: UIGestureRecognizerDelegate {
                } else if displayState == .subscribers {
             currentUser = subscribers[indexPath.row]
         }
+        
+        if currentUser.email == PFUser.current()?.email {
+            currentUser = PFUser.current()!
+        }
 
         DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
