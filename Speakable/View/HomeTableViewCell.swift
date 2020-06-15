@@ -81,7 +81,7 @@ extension HomeTableViewCell{
     func configureCell(pod: Pod){
         self.usernameLabel.text = pod.createdBy.username
         self.audioFile = pod.audio
-        self.listensCountLabel.text = "Listeners: \(pod.listens)"
+        self.listensCountLabel.text = "Listens: \(pod.listens)"
         self.descriptionLabel.text = pod.podDescription
         let userImageFile = pod.createdBy["picture"] as? PFFileObject
         userImageFile?.getDataInBackground {

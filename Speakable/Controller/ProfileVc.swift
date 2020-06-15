@@ -64,6 +64,7 @@ class ProfileVC: UIViewController {
         let podQuery = Pod.query()
         podQuery?.whereKey("createdBy", equalTo: currentUser as Any)
         podQuery?.includeKey("audio")
+        podQuery?.addDescendingOrder("createdAt")
         podQuery?.findObjectsInBackground(block: { (objects, error) in
             if error != nil {
                 print("Error")

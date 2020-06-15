@@ -21,6 +21,10 @@ class HomeVC: UITableViewController {
         self.tableView.allowsSelection = false
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+        
+        let refreshControl = UIRefreshControl()
+         refreshControl.addTarget(self, action:  #selector(refreshPods), for: .valueChanged)
+         self.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +54,11 @@ class HomeVC: UITableViewController {
         }
     }
     
+    @objc func refreshPods() {
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+    }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -67,7 +76,7 @@ class HomeVC: UITableViewController {
         cell.configureCell(pod: pod)
         
         cell.playButtonTapped = {
-            pod.incrementKey("listens", byAmount: 0.5)
+            pod.incrementKey("listens", byAmount: 1)
             pod.saveInBackground()
             for tempCell in tableView.visibleCells {
                 if let ultraTempCell = tempCell as? HomeTableViewCell, ultraTempCell != cell {
