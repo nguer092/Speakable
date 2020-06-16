@@ -82,7 +82,6 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         
         cell.configureSearchCell(user: user)
         
-        
         //Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(SearchVC.handleTap))
         tap.delegate = self as UIGestureRecognizerDelegate

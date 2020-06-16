@@ -15,6 +15,8 @@ class DataManager {
     static let shared = DataManager()
     var homeVC = HomeVC()
     var tabController = TabViewController()
+    var pod : Pod?
+    var profileVC = ProfileVC()
 }
 
 

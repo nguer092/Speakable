@@ -15,7 +15,8 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        editUsernameTextField.addTarget(self, action: #selector(ProfileVC.textFieldDidChange(_:)), for: .editingChanged)
+        DataManager.shared.profileVC = self
         profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
         profilePic.contentMode = UIView.ContentMode.scaleAspectFill
         profilePic.isUserInteractionEnabled = true
@@ -196,7 +197,7 @@ class ProfileVC: UIViewController {
         editButton.isHidden = true
         saveButton.isHidden = false
         editUsernameTextField.isHidden = false
-        editUsernameTextField.placeholder = PFUser.current()?.username
+        editUsernameTextField.text = PFUser.current()?.username
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
@@ -204,6 +205,9 @@ class ProfileVC: UIViewController {
         editButton.isHidden = false
         editUsernameTextField.isHidden = true
         self.editUsernameTextField.resignFirstResponder()
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
         self.currentUser.username = editUsernameTextField.text
         self.currentUser.saveInBackground()
         usernameLabel.text = currentUser?.username
@@ -251,7 +255,7 @@ class ProfileVC: UIViewController {
                 self.present(launchVC!, animated: true, completion: nil)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { (buttonTapped) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (buttonTapped) in
             do {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -346,8 +350,17 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
              self.removePod(atIndexPath: indexPath)
              tableView.deleteRows(at: [indexPath], with: .automatic)
          }
+        let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+            DataManager.shared.pod = self.pods[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let editVC = storyboard.instantiateViewController(withIdentifier: "editVC")
+            self.present(editVC, animated: true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+         editAction.backgroundColor = #colorLiteral(red: 0.4611414671, green: 0.9961133599, blue: 0.4175608158, alpha: 1)
          deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+         swipeActions.performsFirstActionWithFullSwipe = false
          return swipeActions
      }
      

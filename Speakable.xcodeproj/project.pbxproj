@@ -11,6 +11,7 @@
 		0122DB622497D3C900B19E90 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB612497D3C900B19E90 /* DataManager.swift */; };
 		0122DB692498371800B19E90 /* boy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB652498371500B19E90 /* boy.jpg */; };
 		0122DB6A2498371800B19E90 /* tape.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB662498371700B19E90 /* tape.mp4 */; };
+		0122DB6F24986B3600B19E90 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB6E24986B3600B19E90 /* EditVC.swift */; };
 		0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651292484887F00C3CE6C /* DisplayState.swift */; };
 		0136512F248488E000C3CE6C /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136512E248488E000C3CE6C /* Pod.swift */; };
 		01365131248488F200C3CE6C /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365130248488F200C3CE6C /* Following.swift */; };
@@ -38,6 +39,7 @@
 		0122DB612497D3C900B19E90 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		0122DB652498371500B19E90 /* boy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boy.jpg; sourceTree = "<group>"; };
 		0122DB662498371700B19E90 /* tape.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tape.mp4; sourceTree = "<group>"; };
+		0122DB6E24986B3600B19E90 /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		013651292484887F00C3CE6C /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		0136512E248488E000C3CE6C /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		01365130248488F200C3CE6C /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
 				0149B32D24709563003C35B2 /* ProfileVC.swift */,
 				0149B33D24709776003C35B2 /* SearchVC.swift */,
+				0122DB6E24986B3600B19E90 /* EditVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				0149B3492470D165003C35B2 /* SignupVC.swift in Sources */,
 				0136512F248488E000C3CE6C /* Pod.swift in Sources */,
 				013651332484897D00C3CE6C /* HomeTableViewCell.swift in Sources */,
+				0122DB6F24986B3600B19E90 /* EditVC.swift in Sources */,
 				0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */,
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
 				0122DB622497D3C900B19E90 /* DataManager.swift in Sources */,

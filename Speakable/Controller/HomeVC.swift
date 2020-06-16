@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 
-
 class HomeVC: UITableViewController {
     
     //MARK: Lifecycle
@@ -34,7 +33,6 @@ class HomeVC: UITableViewController {
     
     
     //MARK: = Properties, Actions, Methods
-    
     var pods: [Pod] = []
     
     func fetchPods() {
@@ -112,16 +110,29 @@ class HomeVC: UITableViewController {
             self.removePod(atIndexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+        
+       
+        let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
+            DataManager.shared.pod = self.pods[indexPath.row]
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let editVC = storyboard.instantiateViewController(withIdentifier: "editVC")
+            self.present(editVC, animated: true)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        editAction.backgroundColor = #colorLiteral(red: 0.4611414671, green: 0.9961133599, blue: 0.4175608158, alpha: 1)
         deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        swipeActions.performsFirstActionWithFullSwipe = false
         return swipeActions
     }
+
     
     func removePod(atIndexPath indexPath: IndexPath) {
         let pod = pods[indexPath.row]
         pods.remove(at: indexPath.row)
         pod.deleteInBackground()
     }
+    
     
 }
 
@@ -138,7 +149,6 @@ extension HomeVC: UIGestureRecognizerDelegate {
         if pod.createdBy.email == PFUser.current()?.email{
             currentUser = PFUser.current()!
         }
-
         DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
     }
