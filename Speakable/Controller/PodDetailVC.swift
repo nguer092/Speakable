@@ -10,15 +10,36 @@ import UIKit
 import Parse
 
 class PodDetailVC: UIViewController {
+    
+    
+    // So each Pod object will have a proerty that is an array of type Comment
+    //Each comment object will have a sender property of type PFUser(senderID string?) and a content of type string
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableview.delegate = self
         self.tableview.dataSource = self
         sendButtonView.bindToKeyboard()
+        self.podNameLabel.text = self.pod?.createdBy.username
+        self.podDescription.text = self.pod?.podDescription
+        let userImageFile = self.pod?.createdBy["picture"] as? PFFileObject
+        userImageFile?.getDataInBackground(block: { (imageData, error) -> Void in
+            if error == nil {
+                if let imageData = imageData {
+                    let image = UIImage(data: imageData)
+                    self.podProfilePicture.image = image
+                }
+            }
+            else {
+                print(error?.localizedDescription as Any)
+            }
+        })
+        self.podProfilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
+        self.podProfilePicture.contentMode = UIView.ContentMode.scaleAspectFill
+        self.podProfilePicture.setRadius()
     }
-    // So each Pod object will have a proerty that is an array of type Comment
-    //Each comment object will have a sender property of type PFUser(senderID string?) and a content of type string
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Query for pods and comments

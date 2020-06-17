@@ -17,7 +17,6 @@ class HomeVC: UITableViewController {
         super.viewDidLoad()
         DataManager.shared.homeVC = self
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.tableView.allowsSelection = false
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         
