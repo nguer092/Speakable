@@ -70,3 +70,48 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
 }
+
+class InsetTextField: UITextField {
+
+    private var padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+    
+    override func awakeFromNib() {
+        let placeHolder = NSAttributedString(string: self.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        self.attributedPlaceholder = placeHolder
+        super.awakeFromNib()
+    }
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+}
+
+extension UIView {
+    
+    func bindToKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+   @objc func keyboardWillChange(_ notification: NSNotification) {
+        
+        let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+        let begginingFrame = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let endFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let deltaY = endFrame.origin.y - begginingFrame.origin.y
+        
+        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
+            self.frame.origin.y += deltaY
+        }, completion: nil)
+    }
+    
+}

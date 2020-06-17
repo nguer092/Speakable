@@ -16,9 +16,7 @@ class FollowingTableViewCell: UITableViewCell {
     
     
     func configureSearchCell(user: PFUser){
-        do { try user.fetchIfNeeded()} catch {
-            print("error")
-        }
+        user.fetchIfNeededInBackground()
         usernameSearchLabel.text = user.username
         let userImageFile = user["picture"] as? PFFileObject
         userImageFile?.getDataInBackground(block: { (imageData, error) -> Void in

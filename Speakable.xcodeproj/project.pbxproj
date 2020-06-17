@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */; };
 		0122DB622497D3C900B19E90 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB612497D3C900B19E90 /* DataManager.swift */; };
-		0122DB692498371800B19E90 /* boy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB652498371500B19E90 /* boy.jpg */; };
-		0122DB6A2498371800B19E90 /* tape.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0122DB662498371700B19E90 /* tape.mp4 */; };
 		0122DB6F24986B3600B19E90 /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB6E24986B3600B19E90 /* EditVC.swift */; };
+		0122DB712499657000B19E90 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB702499657000B19E90 /* Comment.swift */; };
+		0122DB7324996EFB00B19E90 /* PodDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB7224996EFA00B19E90 /* PodDetailVC.swift */; };
+		0122DB752499C67B00B19E90 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0122DB742499C67B00B19E90 /* CommentTableViewCell.swift */; };
 		0136512A2484887F00C3CE6C /* DisplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013651292484887F00C3CE6C /* DisplayState.swift */; };
 		0136512F248488E000C3CE6C /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0136512E248488E000C3CE6C /* Pod.swift */; };
 		01365131248488F200C3CE6C /* Following.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01365130248488F200C3CE6C /* Following.swift */; };
@@ -37,9 +38,10 @@
 /* Begin PBXFileReference section */
 		0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		0122DB612497D3C900B19E90 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		0122DB652498371500B19E90 /* boy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boy.jpg; sourceTree = "<group>"; };
-		0122DB662498371700B19E90 /* tape.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = tape.mp4; sourceTree = "<group>"; };
 		0122DB6E24986B3600B19E90 /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
+		0122DB702499657000B19E90 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		0122DB7224996EFA00B19E90 /* PodDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodDetailVC.swift; sourceTree = "<group>"; };
+		0122DB742499C67B00B19E90 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		013651292484887F00C3CE6C /* DisplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayState.swift; sourceTree = "<group>"; };
 		0136512E248488E000C3CE6C /* Pod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		01365130248488F200C3CE6C /* Following.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Following.swift; sourceTree = "<group>"; };
@@ -78,15 +80,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0122DB632498334D00B19E90 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				0122DB652498371500B19E90 /* boy.jpg */,
-				0122DB662498371700B19E90 /* tape.mp4 */,
-			);
-			path = Media;
-			sourceTree = "<group>";
-		};
 		013651282484886A00C3CE6C /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +103,7 @@
 			children = (
 				0136512E248488E000C3CE6C /* Pod.swift */,
 				01365130248488F200C3CE6C /* Following.swift */,
+				0122DB702499657000B19E90 /* Comment.swift */,
 				0122DB612497D3C900B19E90 /* DataManager.swift */,
 			);
 			path = Model;
@@ -142,6 +136,7 @@
 				0149B341247097F0003C35B2 /* LoginVC.swift */,
 				0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */,
 				0149B32B24709563003C35B2 /* HomeVC.swift */,
+				0122DB7224996EFA00B19E90 /* PodDetailVC.swift */,
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
 				0149B32D24709563003C35B2 /* ProfileVC.swift */,
 				0149B33D24709776003C35B2 /* SearchVC.swift */,
@@ -157,6 +152,7 @@
 				013651322484897D00C3CE6C /* HomeTableViewCell.swift */,
 				01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */,
 				01365136248489F300C3CE6C /* FollowingTableViewCell.swift */,
+				0122DB742499C67B00B19E90 /* CommentTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,7 +174,6 @@
 				0149B3462470981C003C35B2 /* View */,
 				0149B3452470980E003C35B2 /* Controller */,
 				0149B34724709826003C35B2 /* Resources */,
-				0122DB632498334D00B19E90 /* Media */,
 				0136512B2484889500C3CE6C /* Supplementary Files */,
 			);
 			path = Speakable;
@@ -261,8 +256,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0122DB6A2498371800B19E90 /* tape.mp4 in Resources */,
-				0122DB692498371800B19E90 /* boy.jpg in Resources */,
 				0149B33624709567003C35B2 /* LaunchScreen.storyboard in Resources */,
 				0149B33324709567003C35B2 /* Assets.xcassets in Resources */,
 				0149B33124709563003C35B2 /* Main.storyboard in Resources */,
@@ -329,12 +322,15 @@
 				0149B342247097F0003C35B2 /* LoginVC.swift in Sources */,
 				0122DB622497D3C900B19E90 /* DataManager.swift in Sources */,
 				01365135248489BA00C3CE6C /* ProfileTableViewCell.swift in Sources */,
+				0122DB752499C67B00B19E90 /* CommentTableViewCell.swift in Sources */,
 				0122DB5C2492B8C700B19E90 /* ResetPasswordVC.swift in Sources */,
 				0149B33E24709776003C35B2 /* SearchVC.swift in Sources */,
 				0149B32C24709563003C35B2 /* HomeVC.swift in Sources */,
 				0149B34E2470D302003C35B2 /* InitialVC.swift in Sources */,
+				0122DB7324996EFB00B19E90 /* PodDetailVC.swift in Sources */,
 				0149B32824709563003C35B2 /* AppDelegate.swift in Sources */,
 				0149B34C2470D19C003C35B2 /* Utilities.swift in Sources */,
+				0122DB712499657000B19E90 /* Comment.swift in Sources */,
 				01365137248489F300C3CE6C /* FollowingTableViewCell.swift in Sources */,
 				0149B32A24709563003C35B2 /* SceneDelegate.swift in Sources */,
 			);

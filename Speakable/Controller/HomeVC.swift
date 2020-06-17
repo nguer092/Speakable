@@ -111,7 +111,6 @@ class HomeVC: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-       
         let editAction = UIContextualAction(style: .normal, title: "Edit") {  (contextualAction, view, boolValue) in
             DataManager.shared.pod = self.pods[indexPath.row]
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -131,6 +130,12 @@ class HomeVC: UITableViewController {
         let pod = pods[indexPath.row]
         pods.remove(at: indexPath.row)
         pod.deleteInBackground()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let podDetailVC = storyboard?.instantiateViewController(identifier: "PodDetailVC") as? PodDetailVC else {return}
+        podDetailVC.initData(forPod: pods[indexPath.row])
+        present(podDetailVC, animated: true, completion: nil)
     }
     
     
