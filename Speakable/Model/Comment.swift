@@ -16,6 +16,7 @@ class Comment: PFObject, PFSubclassing {
     }
 
 @NSManaged var content: String
-@NSManaged var senderId: String
+@NSManaged var sender: PFUser
+@NSManaged var pod: Pod
 
 }

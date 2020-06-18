@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CommentTableViewCell: UITableViewCell {
 
@@ -14,10 +15,26 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var commentProfilePic: UIImageView!
     
-    func configureCell(profileImage: UIImage, username: String, content: String) {
-        self.commentProfilePic.image = profileImage
-        self.commentUsernameLabel.text = username
-        self.commentLabel.text = content
+    func configureCell(comment: Comment) {
+        self.commentUsernameLabel.text = comment.sender.username
+        self.commentLabel.text = comment.content
+        let userImageFile = comment.sender["picture"] as? PFFileObject
+        userImageFile?.getDataInBackground {
+            (imageData: Data?, error: Error?) -> Void in
+            if error == nil {
+                if let imageData = imageData {
+                    let image = UIImage(data:imageData)
+                    self.commentProfilePic.image = image
+                }
+                else {
+                    print(error?.localizedDescription as Any)
+                }
+            }
+        }
+        commentProfilePic.layer.contentsGravity = CALayerContentsGravity.bottom
+        commentProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
+        commentProfilePic.setRadius()
+        commentProfilePic.isUserInteractionEnabled = true
     }
     
 

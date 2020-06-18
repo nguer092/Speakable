@@ -18,5 +18,4 @@ class Pod: PFObject, PFSubclassing {
     @NSManaged var audio: Data
     @NSManaged var podDescription: String
     @NSManaged var listens: Int
-//    @NSManaged var comments: [Comment]
 }

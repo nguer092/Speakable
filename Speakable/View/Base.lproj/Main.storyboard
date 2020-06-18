@@ -1324,10 +1324,10 @@
                                         </constraints>
                                         <state key="normal" image="paperplane.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="sendButton:" destination="btj-tA-PpI" eventType="touchUpInside" id="2ua-n8-uov"/>
+                                            <action selector="sendButtonTapped:" destination="btj-tA-PpI" eventType="touchUpInside" id="2ua-n8-uov"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Send a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJX-Jj-ToC" customClass="InsetTextField" customModule="BreakPoint" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Send a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJX-Jj-ToC" customClass="InsetTextField" customModule="Speakable" customModuleProvider="target">
                                         <rect key="frame" x="18" y="18" width="326" height="50"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.65499341489999996" green="0.92489182950000004" blue="0.67977881429999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1448,6 +1448,7 @@
                         <outlet property="podNameLabel" destination="pFU-Gg-Px7" id="kaR-uq-Bg8"/>
                         <outlet property="podProfilePicture" destination="Ni6-cE-D7a" id="KH6-G0-pPY"/>
                         <outlet property="progressView" destination="LLX-6E-aW7" id="SzW-63-rVd"/>
+                        <outlet property="sendButton" destination="j1g-RN-srT" id="bMp-Vd-ZW1"/>
                         <outlet property="sendButtonView" destination="cyY-aI-Wz0" id="jeu-15-jv6"/>
                         <outlet property="tableview" destination="00o-lt-Ukv" id="ahG-0r-f52"/>
                     </connections>
