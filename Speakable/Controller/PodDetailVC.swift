@@ -88,7 +88,7 @@ class PodDetailVC: UIViewController {
             guard let currentUser = PFUser.current() else {return}
             guard let currentPod = self.pod else {return}
             postComment(withMessage: content, byUser: currentUser, forPod: currentPod)
-            tableview.reloadData()
+        
             self.messageTextField.text = ""
             self.messageTextField.isEnabled = true
             self.sendButton.isEnabled = true
@@ -131,6 +131,8 @@ class PodDetailVC: UIViewController {
         comment.sender = user
         comment.pod = self.pod!
         comment.saveInBackground()
+        self.podComments.insert(comment, at: 0)
+        self.tableview.reloadData()
     }
     
     
