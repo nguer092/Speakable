@@ -57,7 +57,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var recordLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
-    var seconds = 180
+    var seconds = 300
     var timer = Timer()
     var isTimerRunning = false
     @IBOutlet weak var playButton: UIButton!
@@ -74,7 +74,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
             timer.invalidate()
         } else if !audioRecorder.isRecording {
             playButton.isEnabled = false
-            seconds = 181
+            seconds = 300
             startRecording()
             runTimer()
         }

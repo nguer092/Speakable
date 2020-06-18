@@ -1358,7 +1358,7 @@
                                         </constraints>
                                         <state key="normal" image="skipBack"/>
                                         <connections>
-                                            <action selector="podRewind:" destination="btj-tA-PpI" eventType="touchUpInside" id="0DW-ri-zXl"/>
+                                            <action selector="rewindButton:" destination="btj-tA-PpI" eventType="touchUpInside" id="0DW-ri-zXl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUq-9B-RKN">

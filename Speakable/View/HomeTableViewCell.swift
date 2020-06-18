@@ -61,13 +61,13 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBAction func rewindTapped(_ sender: UIButton) {
         if audioPlayer != nil {
-        audioPlayer.currentTime -= 5
+        audioPlayer.currentTime -= 10
         }
     }
     
     @IBAction func forwardTapped(_ sender: UIButton) {
         if audioPlayer != nil {
-        audioPlayer.currentTime += 5
+        audioPlayer.currentTime += 10
         }
     }
 
