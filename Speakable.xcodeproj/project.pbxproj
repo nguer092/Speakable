@@ -134,7 +134,6 @@
 				0149B34D2470D302003C35B2 /* InitialVC.swift */,
 				0149B3482470D165003C35B2 /* SignupVC.swift */,
 				0149B341247097F0003C35B2 /* LoginVC.swift */,
-				0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */,
 				0149B32B24709563003C35B2 /* HomeVC.swift */,
 				0122DB7224996EFA00B19E90 /* PodDetailVC.swift */,
 				0149B3432470980A003C35B2 /* AddPostVC.swift */,
@@ -149,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				0149B32F24709563003C35B2 /* Main.storyboard */,
+				0122DB5B2492B8C700B19E90 /* ResetPasswordVC.swift */,
 				013651322484897D00C3CE6C /* HomeTableViewCell.swift */,
 				01365134248489BA00C3CE6C /* ProfileTableViewCell.swift */,
 				01365136248489F300C3CE6C /* FollowingTableViewCell.swift */,

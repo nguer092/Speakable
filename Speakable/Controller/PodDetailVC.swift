@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AVFoundation
 
 class PodDetailVC: UIViewController {
 
@@ -17,7 +18,6 @@ class PodDetailVC: UIViewController {
         super.viewDidLoad()
         self.tableview.delegate = self
         self.tableview.dataSource = self
-        sendButtonView.bindToKeyboard()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:  #selector(refreshComments), for: .valueChanged)
@@ -31,6 +31,7 @@ class PodDetailVC: UIViewController {
         //Configure Pod
         self.podNameLabel.text = self.pod?.createdBy.username
         self.podDescription.text = self.pod?.podDescription
+        self.audioFile = pod?.audio
         let userImageFile = self.pod?.createdBy["picture"] as? PFFileObject
         userImageFile?.getDataInBackground(block: { (imageData, error) -> Void in
             if error == nil {
@@ -46,15 +47,14 @@ class PodDetailVC: UIViewController {
         self.podProfilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
         self.podProfilePicture.contentMode = UIView.ContentMode.scaleAspectFill
         self.podProfilePicture.setRadius()
-        //Animate to bottom of table view when sending a new message
-        if self.podComments.count > 0 {
-            self.tableview.scrollToRow(at: IndexPath(row: self.podComments.count - 1, section: 0), at: .none, animated: true)
-        }
     }
     
     
     //MARK: - Properties, Outlets, Actions
     
+    var audioFile: Data?
+    var audioPlayer : AVAudioPlayer?
+    var timer = Timer()
     var pod : Pod?
     var podComments = [Comment]()
     @IBOutlet weak var podNameLabel: UILabel!
@@ -65,17 +65,45 @@ class PodDetailVC: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var messageTextField: InsetTextField!
+    @IBOutlet weak var playButton: UIButton!
     
-    @IBAction func rewindButton(_ sender: Any) {
-        
+    @IBAction func rewindButtonTapped(_ sender: Any) {
+        if audioPlayer != nil {
+              audioPlayer?.currentTime -= 15
+              }
     }
     
-    @IBAction func playButton(_ sender: Any) {
+    @IBAction func playButtonTapped(_ sender: Any) {
+        self.pod?.incrementKey("listens", byAmount: 1)
+        self.pod?.saveInBackground()
         
+        if self.audioPlayer != nil {
+                   if (self.audioPlayer?.isPlaying)! {
+                       self.audioPlayer?.pause()
+                       self.playButton.setImage(#imageLiteral(resourceName: "playwhite"), for: .normal)
+                   }
+                   else {
+                       self.audioPlayer?.play()
+                       self.playButton.setImage(#imageLiteral(resourceName: "pausewhite"), for: .normal)
+                   }
+                   return
+               }
+               do {
+                   self.audioPlayer = try AVAudioPlayer(data: self.audioFile!)
+                   self.audioPlayer?.prepareToPlay()
+                   self.audioPlayer?.delegate = self as? AVAudioPlayerDelegate
+                   self.audioPlayer?.play()
+                   self.playButton.setImage(#imageLiteral(resourceName: "pausewhite"), for: .normal)
+               } catch {
+                   print(#line, error.localizedDescription)
+               }
+               self.timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(PodDetailVC.updateProgress)), userInfo: nil, repeats: true)
     }
     
-    @IBAction func fastForwardButton(_ sender: Any) {
-        
+    @IBAction func fastForwardButtonTapped(_ sender: Any) {
+        if audioPlayer != nil {
+        audioPlayer?.currentTime += 15
+        }
     }
     
 
@@ -151,6 +179,22 @@ class PodDetailVC: UIViewController {
         comment.deleteInBackground()
     }
     
+    @objc func updateProgress() {
+        // Increase progress value
+        if self.audioPlayer != nil {
+            progressView.progress = Float((self.audioPlayer?.currentTime)! / (self.audioPlayer?.duration)!)
+        }
+        
+        if self.progressView.progress >= 1 {
+            self.timer.invalidate()
+            self.progressView.progress = 0.0
+        }
+        
+        if self.audioPlayer?.isPlaying == false {
+            self.playButton.setImage(#imageLiteral(resourceName: "playwhite"), for: .normal)
+        }
+    }
+    
 }
 
 
@@ -188,7 +232,7 @@ extension PodDetailVC: UITableViewDelegate, UITableViewDataSource {
             self.removeComment(atIndexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.4274509804, blue: 0.3764705882, alpha: 1)
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         swipeActions.performsFirstActionWithFullSwipe = false
         return swipeActions

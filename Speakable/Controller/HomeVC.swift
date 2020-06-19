@@ -19,6 +19,7 @@ class HomeVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+  
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:  #selector(refreshPods), for: .valueChanged)
@@ -33,7 +34,9 @@ class HomeVC: UITableViewController {
     
     //MARK: = Properties, Actions, Methods
     var pods: [Pod] = []
-    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     func fetchPods() {
         let podQuery = Pod.query()
         podQuery?.includeKey("createdBy")
@@ -117,8 +120,8 @@ class HomeVC: UITableViewController {
             self.present(editVC, animated: true)
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
-        editAction.backgroundColor = #colorLiteral(red: 0.4611414671, green: 0.9961133599, blue: 0.4175608158, alpha: 1)
-        deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        editAction.backgroundColor = #colorLiteral(red: 0.7215686275, green: 0.9137254902, blue: 0.5254901961, alpha: 1)
+        deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.4274509804, blue: 0.3764705882, alpha: 1)
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         swipeActions.performsFirstActionWithFullSwipe = false
         return swipeActions

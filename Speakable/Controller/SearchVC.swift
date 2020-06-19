@@ -33,6 +33,9 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     }
     
     // MARK: - Methods
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil

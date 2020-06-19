@@ -83,6 +83,7 @@ class ProfileVC: UIViewController {
         let subscribersQuery = Following.query()
         subscribersQuery?.whereKey("following", equalTo: currentUser as Any)
         subscribersQuery?.includeKey("follower")
+        subscribersQuery?.includeKey("following")
         subscribersQuery?.findObjectsInBackground(block: {(objects, error) in
             if let objects = objects {
                 self.subscribers.removeAll()
@@ -97,7 +98,8 @@ class ProfileVC: UIViewController {
         func querySubscribed () {
             let subscribedQuery = Following.query()
             subscribedQuery?.whereKey("follower", equalTo: currentUser as Any)
-            subscribersQuery?.includeKey("following")
+            subscribedQuery?.includeKey("following")
+            subscribedQuery?.includeKey("follower")
             subscribedQuery?.findObjectsInBackground(block: { (objects, error) in
                 if let objects = objects {
                     self.subscribed.removeAll()
@@ -122,6 +124,8 @@ class ProfileVC: UIViewController {
                 self.followingSwitch.isOn = false
             }
         })
+        
+        
     }
     
     
@@ -357,8 +361,8 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
             self.present(editVC, animated: true)
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
-         editAction.backgroundColor = #colorLiteral(red: 0.4611414671, green: 0.9961133599, blue: 0.4175608158, alpha: 1)
-         deleteAction.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+         editAction.backgroundColor = #colorLiteral(red: 0.7215686275, green: 0.9137254902, blue: 0.5254901961, alpha: 1)
+         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.4274509804, blue: 0.3764705882, alpha: 1)
          let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
          swipeActions.performsFirstActionWithFullSwipe = false
          return swipeActions
@@ -414,6 +418,8 @@ extension ProfileVC: UITabBarControllerDelegate {
                 currentUser = PFUser.current()
                 profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
                 setupProfile()
+                displayState = .pods
+                styleButtons(greenbutton: podsButton, otherbutton: subscribedButton, lastbutton: subscribersButton)
                 self.tableview.reloadData()
             }
         }
