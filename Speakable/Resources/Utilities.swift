@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable
 
 class Utilities {
+    
 
     static func styleTextField(_ textfield:UITextField) {
         // Create the bottom line
@@ -45,6 +46,7 @@ class Utilities {
 
 
 //MARK: - Custom Button Class
+
 class BottomBorderButton: UIButton {
     
     var border: CALayer?
@@ -64,12 +66,17 @@ class BottomBorderButton: UIButton {
 
 
 //MARK: - Profile Pic ImageViews
+
 extension UIImageView {
-    func setRadius() {
+    func formatImage() {
         self.layer.cornerRadius = self.frame.height/2
         self.layer.masksToBounds = true
+        self.layer.contentsGravity = CALayerContentsGravity.bottom
+        self.contentMode = UIView.ContentMode.scaleAspectFill
+        self.isUserInteractionEnabled = true
     }
 }
+
 
 class InsetTextField: UITextField {
 

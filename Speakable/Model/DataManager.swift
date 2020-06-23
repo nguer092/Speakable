@@ -21,6 +21,5 @@ class DataManager {
 
 
 class TabViewController: UITabBarController {
-    
     var currentUser: PFUser?
 }

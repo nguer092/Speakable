@@ -17,10 +17,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         editUsernameTextField.addTarget(self, action: #selector(ProfileVC.textFieldDidChange(_:)), for: .editingChanged)
         DataManager.shared.profileVC = self
-        profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
-        profilePic.contentMode = UIView.ContentMode.scaleAspectFill
-        profilePic.isUserInteractionEnabled = true
-        profilePic.setRadius()
+        profilePic.formatImage()
         editUsernameTextField.isHidden = true
         saveButton.isHidden = true
         navigationController?.navigationBar.isHidden = true
@@ -340,7 +337,7 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if currentUser == PFUser.current() { return true }
+        if currentUser == PFUser.current() && displayState == .pods { return true }
         else {return false}
     
 }
@@ -418,8 +415,6 @@ extension ProfileVC: UITabBarControllerDelegate {
                 currentUser = PFUser.current()
                 profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
                 setupProfile()
-                displayState = .pods
-                styleButtons(greenbutton: podsButton, otherbutton: subscribedButton, lastbutton: subscribersButton)
                 self.tableview.reloadData()
             }
         }
@@ -444,8 +439,6 @@ extension ProfileVC: UIGestureRecognizerDelegate {
 
         DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
-        displayState = .pods
-        styleButtons(greenbutton: podsButton, otherbutton: subscribersButton, lastbutton: subscribedButton)
         setupProfile()
         self.tableview.reloadData()
 }

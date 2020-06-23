@@ -31,10 +31,7 @@ class CommentTableViewCell: UITableViewCell {
                 }
             }
         }
-        commentProfilePic.layer.contentsGravity = CALayerContentsGravity.bottom
-        commentProfilePic.contentMode = UIView.ContentMode.scaleAspectFill
-        commentProfilePic.setRadius()
-        commentProfilePic.isUserInteractionEnabled = true
+        commentProfilePic.formatImage()
     }
     
 

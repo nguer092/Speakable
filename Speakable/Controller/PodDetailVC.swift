@@ -44,9 +44,7 @@ class PodDetailVC: UIViewController {
                 print(error?.localizedDescription as Any)
             }
         })
-        self.podProfilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
-        self.podProfilePicture.contentMode = UIView.ContentMode.scaleAspectFill
-        self.podProfilePicture.setRadius()
+        self.podProfilePicture.formatImage()
     }
     
     

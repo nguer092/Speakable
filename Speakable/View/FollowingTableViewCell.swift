@@ -30,10 +30,7 @@ class FollowingTableViewCell: UITableViewCell {
                 print(error?.localizedDescription as Any)
             }
         })
-        profilePic.layer.contentsGravity = CALayerContentsGravity.bottom
-        profilePic.contentMode = UIView.ContentMode.scaleAspectFill
-        profilePic.setRadius()
-        profilePic.isUserInteractionEnabled = true
+        profilePic.formatImage()
         }
         
     }

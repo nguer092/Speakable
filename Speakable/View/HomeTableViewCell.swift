@@ -97,10 +97,7 @@ extension HomeTableViewCell{
                 }
             }
         }
-        profilePicture.layer.contentsGravity = CALayerContentsGravity.bottom
-        profilePicture.contentMode = UIView.ContentMode.scaleAspectFill
-        profilePicture.setRadius()
-        profilePicture.isUserInteractionEnabled = true
+        profilePicture.formatImage()
     }
     
     
