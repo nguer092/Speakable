@@ -215,9 +215,7 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func podsButtonClicked(_ sender: BottomBorderButton) {
-        displayState = .pods
-        styleButtons(greenbutton: podsButton, otherbutton: subscribedButton, lastbutton: subscribersButton)
-        self.tableview.reloadData()
+        initialPodsView()
     }
     
     @IBAction func subscribedButtonClicked(_ sender: BottomBorderButton) {
@@ -234,6 +232,12 @@ class ProfileVC: UIViewController {
     
 
     //MARK: - Functions
+    
+    func initialPodsView() {
+        displayState = .pods
+        styleButtons(greenbutton: podsButton, otherbutton: subscribedButton, lastbutton: subscribersButton)
+        self.tableview.reloadData()
+    }
     
     func styleButtons(greenbutton: BottomBorderButton, otherbutton: BottomBorderButton, lastbutton: BottomBorderButton) {
         greenbutton.addBottomBorderWithColor(color: greenColor(), width: 3)
@@ -414,7 +418,7 @@ extension ProfileVC: UITabBarControllerDelegate {
             if self.view.window != nil {
                 currentUser = PFUser.current()
                 profilePic?.image = self.currentUser["picture"] as? UIImage ?? nil
-                setupProfile()
+                setupProfile() 
                 self.tableview.reloadData()
             }
         }
@@ -436,10 +440,9 @@ extension ProfileVC: UIGestureRecognizerDelegate {
         if currentUser.email == PFUser.current()?.email {
             currentUser = PFUser.current()!
         }
-
+        initialPodsView()
         DataManager.shared.tabController.currentUser = currentUser
         tabBarController?.selectedIndex = 1
         setupProfile()
-        self.tableview.reloadData()
 }
 }

@@ -19,6 +19,7 @@ class AddPostVC: UIViewController, AVAudioPlayerDelegate {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         tabBarController?.tabBar.isHidden = true
         playButton.isEnabled = false
+        saveButton.isEnabled = false
         recordingSession = AVAudioSession.sharedInstance()
         do {
             try recordingSession.setCategory(AVAudioSession.Category.playAndRecord)
